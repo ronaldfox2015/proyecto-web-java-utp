@@ -40,21 +40,22 @@ revisar si tienes un cambio con el siguiente comamdo
 git status
 ```
 
- ![alt text](https://drive.google.com/file/d/1bxXL3_x2ZlVRNsiN54x64o1aAXXYXLJn/view?usp=sharing)
+ ![alt text](https://raw.githubusercontent.com/ronaldfox2015/proyecto-web-java-utp/master/app/doc/img/Captura%20de%20pantalla%20de%202019-06-18%2013-37-26.png)
 
 ### paso dos realizando el commit :
 
 si es que tienes un cambio te saldra un listado con color rojo indicando que hay cambio en tu repocitorio
 
- ![alt text](https://drive.google.com/file/d/1bxXL3_x2ZlVRNsiN54x64o1aAXXYXLJn/view)
+ ![alt text](https://raw.githubusercontent.com/ronaldfox2015/proyecto-web-java-utp/master/app/doc/img/Captura%20de%20pantalla%20de%202019-06-18%2013-38-56.png)
 
 si es el caso ejecutar este comamdo para subir los cambios
 
 ```
+git add .
 git commit -am "en este sitio va un comentario referente al cambio que has realizado"
 ```
 
- ![alt text](https://drive.google.com/file/d/1xKKcJrfxalWQzP8EsY-inZ--QueDXRw6/view)
+ ![alt text](https://raw.githubusercontent.com/ronaldfox2015/proyecto-web-java-utp/master/app/doc/img/Captura%20de%20pantalla%20de%202019-06-18%2013-43-21.png)
 
 
 realizando la instruccion commit solo es que guardas el cambio a nivel de tu pc no en la nube si quieres que se suba al repocitorio y lo puedan ver los demas ejecutas lo siguiente :
@@ -63,5 +64,5 @@ realizando la instruccion commit solo es que guardas el cambio a nivel de tu pc 
 git push origin master
 ```
 
- ![alt text](https://drive.google.com/file/d/1ziRKXnRqfM3s5hkX3t3NpMMPWRHjSnVL/view)
+ ![alt text](https://raw.githubusercontent.com/ronaldfox2015/proyecto-web-java-utp/master/app/doc/img/Captura%20de%20pantalla%20de%202019-06-18%2013-43-50.png)
 
