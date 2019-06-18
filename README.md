@@ -40,13 +40,13 @@ revisar si tienes un cambio con el siguiente comamdo
 git status
 ```
 
- ![alt text](https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png)
+ ![alt text](https://drive.google.com/file/d/1xKKcJrfxalWQzP8EsY-inZ--QueDXRw6/view)
 
 ### paso dos realizando el commit :
 
 si es que tienes un cambio te saldra un listado con color rojo indicando que hay cambio en tu repocitorio
 
- ![alt text](https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png)
+ ![alt text](https://drive.google.com/file/d/1bxXL3_x2ZlVRNsiN54x64o1aAXXYXLJn/view)
 
 si es el caso ejecutar este comamdo para subir los cambios
 
@@ -54,7 +54,7 @@ si es el caso ejecutar este comamdo para subir los cambios
 git commit -am "en este sitio va un comentario referente al cambio que has realizado"
 ```
 
- ![alt text](https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png)
+ ![alt text](https://drive.google.com/file/d/1xKKcJrfxalWQzP8EsY-inZ--QueDXRw6/view)
 
 
 realizando la instruccion commit solo es que guardas el cambio a nivel de tu pc no en la nube si quieres que se suba al repocitorio y lo puedan ver los demas ejecutas lo siguiente :
@@ -63,5 +63,5 @@ realizando la instruccion commit solo es que guardas el cambio a nivel de tu pc 
 git push origin master
 ```
 
- ![alt text](https://raw.githubusercontent.com/parzibyte/WaterPy/master/assets/ImagenV1.png)
+ ![alt text](https://drive.google.com/file/d/1ziRKXnRqfM3s5hkX3t3NpMMPWRHjSnVL/view)
 
