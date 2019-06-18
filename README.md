@@ -1,4 +1,6 @@
-# jenkis-docker-aws
+# Proyecto web integrado
+
+## Pasos para usar git
 
 ### Crear cuenta en github
 
@@ -27,3 +29,13 @@ o este ultimo te pidira usuario y pasword del github
 ```
 git clone https://github.com/ronaldfox2015/proyecto-web-java-utp.git
 ```
+
+## Pasos para subir cambio en git con github
+
+### paso uno :
+
+revisar si tienes un cambio con el siguiente comamdo
+```
+git status
+```
+
