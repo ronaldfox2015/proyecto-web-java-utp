@@ -40,7 +40,7 @@ revisar si tienes un cambio con el siguiente comamdo
 git status
 ```
 
- ![alt text](https://drive.google.com/file/d/1xKKcJrfxalWQzP8EsY-inZ--QueDXRw6/view)
+ ![alt text](https://drive.google.com/file/d/1bxXL3_x2ZlVRNsiN54x64o1aAXXYXLJn/view?usp=sharing)
 
 ### paso dos realizando el commit :
 
