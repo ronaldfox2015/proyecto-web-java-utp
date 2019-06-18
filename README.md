@@ -7,4 +7,6 @@ abir terminal de git en el directorio donde vamos a trabajar y ejecutan lo sigui
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 
-## git clone git@github.com:ronaldfox2015/proyecto-web-java-utp.git
+```
+git clone git@github.com:ronaldfox2015/proyecto-web-java-utp.git
+```
