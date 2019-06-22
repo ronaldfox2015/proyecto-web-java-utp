@@ -3,12 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/library/AppController.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/library/Database.java</file>
             <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/static/vendor/bootstrap/css/bootstrap.min.css</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/WEB-INF/web.xml</file>
             <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/index.html</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/main.jsp</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/Controller/HomeServlet.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/HomeServlet.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/layouts/navigation.jsp</file>
             <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/home.jsp</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/main.jsp</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/register-company.jsp</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/nbproject/build-impl.xml</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/IndexServlet.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/layouts/slider.jsp</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/CompanyServlet.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/main.jsp</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/index.jsp</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/layouts/css.jsp</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/company.jsp</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/RegisterCompany.java</file>
         </group>
     </open-files>
 </project-private>

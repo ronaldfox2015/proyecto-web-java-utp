@@ -29,70 +29,79 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <img src="../static/img/banner-login.jpg" class="img-fluid" alt="Responsive image"/>
-
+                            <img src="../static/img/SorteoPApaLanding-Desktop.jpg" class="img-fluid" alt="Responsive image"/>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Ingresa a tu cuenta</h5>
+                            <h5 class="card-title">Create tu cuenta</h5>
                         </div>
                         <form class="needs-validation" novalidate>
                             <div class="form-row">
                                 <div class="col-md-4 mb-3">
-                                    <label for="validationTooltip01">First name</label>
-                                    <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="Mark" required>
-                                    <div class="valid-tooltip">
+                                    <label for="validationCustom01">First name</label>
+                                    <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
+                                    <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <label for="validationTooltip02">Last name</label>
-                                    <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required>
-                                    <div class="valid-tooltip">
+                                    <label for="validationCustom02">Last name</label>
+                                    <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
+                                    <div class="valid-feedback">
                                         Looks good!
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <label for="validationTooltipUsername">Username</label>
+                                    <label for="validationCustomUsername">Username</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
                                         </div>
-                                        <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required>
-                                        <div class="invalid-tooltip">
-                                            Please choose a unique and valid username.
+                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Please choose a username.
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationTooltip03">City</label>
-                                    <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
-                                    <div class="invalid-tooltip">
+                                    <label for="validationCustom03">City</label>
+                                    <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
+                                    <div class="invalid-feedback">
                                         Please provide a valid city.
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label for="validationTooltip04">State</label>
-                                    <input type="text" class="form-control" id="validationTooltip04" placeholder="State" required>
-                                    <div class="invalid-tooltip">
+                                    <label for="validationCustom04">State</label>
+                                    <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
+                                    <div class="invalid-feedback">
                                         Please provide a valid state.
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label for="validationTooltip05">Zip</label>
-                                    <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required>
-                                    <div class="invalid-tooltip">
+                                    <label for="validationCustom05">Zip</label>
+                                    <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
+                                    <div class="invalid-feedback">
                                         Please provide a valid zip.
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">Submit form</button>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                    <label class="form-check-label" for="invalidCheck">
+                                        Aceptar los términos y condiciones.
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Usted debe estar de acuerdo antes de enviar.
+                                    </div>
+                                </div>
+                            </div>
+                            <button name="register" class="btn btn-primary" type="submit">Registra</button>
                         </form>
                     </div>
                 </div>
@@ -123,4 +132,3 @@
         </script>
     </body>
 </html>
-    

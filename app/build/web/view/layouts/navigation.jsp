@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="${request.getContextPath()}static/img/logo.jpeg" width="50px" height="50px" alt="">
+        <a class="navbar-brand" href="/home">
+            <img src="${request.getContextPath()}/../static/img/logo.jpeg" width="50px" height="50px" alt="">
         </a>
         <hi class="title">Happy Parking</hi>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
@@ -27,7 +27,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        <img src="${request.getContextPath()}static/img/login.png" width="30px" height="30px" alt="">
+                        <img src="${request.getContextPath()}/../static/img/login.png" width="30px" height="30px" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item" href="full-width.html">Ingresar</a>

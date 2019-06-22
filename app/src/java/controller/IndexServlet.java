@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,12 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ronald
  */
-@WebServlet(       
-        name = "home",
-        description = "home",
-        urlPatterns = "/home"
-)
-public class HomeServlet extends HttpServlet {
+@WebServlet(name = "IndexServlet", urlPatterns = {"/index"})
+public class IndexServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +32,12 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        	
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
         	RequestDispatcher dispatcher = request.getRequestDispatcher(
-				"/view/home.jsp");
+				"/view/index.jsp");
 		dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
