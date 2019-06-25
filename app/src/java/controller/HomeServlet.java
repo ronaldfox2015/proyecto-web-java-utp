@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ronald
  */
-@WebServlet(       
+@WebServlet(
         name = "home",
         description = "home",
-        urlPatterns = "/home"
+        urlPatterns = {"/home"}
 )
 public class HomeServlet extends HttpServlet {
 
@@ -36,10 +36,11 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        	
-        	RequestDispatcher dispatcher = request.getRequestDispatcher(
-				"/view/home.jsp");
-		dispatcher.forward(request, response);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(
+                "/view/home.jsp");
+
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

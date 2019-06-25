@@ -5,6 +5,8 @@
  */
 package controller;
 
+import entity.Company;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -13,17 +15,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import library.AppController;
+import javax.servlet.ServletContext;
+import model.ModelCompany;
+
 /**
  *
  * @author ronald
  */
-@WebServlet(       
-        name = "empresa",
+@WebServlet(
+        name = "registerCompany",
         description = "empresa",
-        urlPatterns = "/empresa"
+        urlPatterns = {
+            "/empresa",
+            "/empresa/registrar",
+            "/empresa/create-acount",
+            "/empresa/dasword"
+        }
 )
-public class CompanyServlet extends HttpServlet{
+public class CompanyServlet extends HttpServlet {
+
+    ModelCompany modelCompany;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,13 +47,25 @@ public class CompanyServlet extends HttpServlet{
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-           	RequestDispatcher dispatcher = request.getRequestDispatcher(
-				"/view/company.jsp");
-		dispatcher.forward(request, response);
+        String url = request.getServletPath();
+
+        switch (url) {
+            case "/empresa/create-acount":
+                this.createAccount(request, response);
+                break;
+            case "/empresa/dasword":
+                this.dasword(request, response);
+                break;
+            case "/empresa/registrar":
+                this.registrationForm(request, response);
+                break;
+            case "/empresa":
+                this.home(request, response);
+                break;
         }
+        RequestDispatcher dispatcher = request.getRequestDispatcher(
+                "/view/index.jsp");
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,6 +83,76 @@ public class CompanyServlet extends HttpServlet{
         processRequest(request, response);
     }
 
+    protected void createAccount(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String name = request.getParameter("nombre");
+        String lastName = request.getParameter("apellido");
+        String mail = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        String businessName = request.getParameter("razon_social");
+        String tradename = request.getParameter("nombre_comercial");
+        String ruc = request.getParameter("ruc");
+        String mobile = request.getParameter("celular");
+        String address = request.getParameter("direccion");
+
+        Company company = new Company();
+        User user = new User();
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setMail(mail);
+        user.setRole("empresa-user");
+
+        user.setPassword(password);
+
+        company.setBusinessName(businessName);
+        company.setTradename(tradename);
+        company.setTradename(tradename);
+        company.setRuc(ruc);
+        company.setMobile(mobile);
+        company.setAddress(address);
+        company.setUser(user);
+        modelCompany.register(company);
+
+        // processUrl("/empresa/dasword", request, response);
+    }
+
+    protected void dasword(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(
+                "/view/company-dasword.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    protected void registrationForm(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(
+                "/view/register-company.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    protected void home(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(
+                "/view/company.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    protected void processUrl(String path, HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        ServletContext ctx = getServletContext();
+        RequestDispatcher rd = ctx.getRequestDispatcher(path);
+
+        if (rd != null) {
+            rd.forward(request, response);
+        }
+    }
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -71,6 +164,7 @@ public class CompanyServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 

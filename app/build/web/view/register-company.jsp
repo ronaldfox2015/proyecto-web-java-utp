@@ -20,9 +20,9 @@
         <%@include file="layouts/navigation.jsp" %>
         <!-- Navigation -->
         <!-- conteiner -->
-        <div class="container">
+        <div class="container" style="margin-top: 92px;">
             <!-- Page Heading/Breadcrumbs -->
-            <h3 class="mt-4 mb-3 text-center">Portal del Empresa
+            <h3 class="mt-4 mb-3 text-center">Create tu cuenta
                 <small></small>
             </h3>
             <div class="row">
@@ -34,61 +34,89 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="card">
+                    <div class="card"  style="padding-right: 10px;padding-left: 10px;">
                         <div class="card-body">
-                            <h5 class="card-title">Create tu cuenta</h5>
+
                         </div>
-                        <form class="needs-validation" novalidate>
+                        <form action="/empresa/create-acount" method="post" class="needs-validation" novalidate>
                             <div class="form-row">
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationCustom01">First name</label>
-                                    <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
+                                <div class="col-md-6 mb-2">
+                                    <label for="validationCustom01">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="" required>
+                                    <div class="invalid-feedback">
+                                        Por favor proporcione un Nombre válido.
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationCustom02">Last name</label>
-                                    <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationCustomUsername">Username</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
-                                        <div class="invalid-feedback">
-                                            Please choose a username.
-                                        </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="validationCustom02">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" value="" required>
+                                    <div class="invalid-feedback">
+                                        Por favor proporcione un Apellido válido.
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="validationCustom03">City</label>
-                                    <input type="text" class="form-control" id="validationCustom03" placeholder="City" required>
+                                <div class="col-md-12 mb-2">
+                                    <label for="Correo">Correo</label>
+                                    <input type="email" class="form-control" id="email"  name="email" placeholder="Email" required>
                                     <div class="invalid-feedback">
-                                        Please provide a valid city.
+                                        Por favor proporcione un Correo válido.
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="validationCustom04">State</label>
-                                    <input type="text" class="form-control" id="validationCustom04" placeholder="State" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-2">
+                                    <label for="Contraseña">Contraseña</label>
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
                                     <div class="invalid-feedback">
-                                        Please provide a valid state.
+                                        Por favor proporcione una Contraseña válida.
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="validationCustom05">Zip</label>
-                                    <input type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-2">
+                                    <label for="RazonSocial">Razon Social</label>
+                                    <input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Razon Social" required>
+                                    <div class="invalid-feedback">
+                                        Por favor proporcione una Razon Social válida.
+
+                                    </div>
+                                </div>                                    
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-2">
+                                    <label for="NombreComercial">Nombre Comercial</label>
+                                    <input type="text" class="form-control" id="nombre_comercial" name="nombre_comercial"  placeholder="Nombre Comercial" required>
+                                    <div class="invalid-feedback">
+                                        Por favor proporcione un Nombre Comercial válido.
+                                    </div>
+                                </div>                                    
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-2">
+                                    <label for="Ruc">Ruc</label>
+                                    <input type="text" class="form-control" id="ruc" name="ruc" placeholder="Ruc" required>
+                                    <div class="invalid-feedback">
+                                        Por favor proporcione un Ruc válido.
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <label for="Cell">N° Celular</label>
+                                    <input type="number" class="form-control" id="celular" name="celular" placeholder="N° Celular" required>
                                     <div class="invalid-feedback">
                                         Please provide a valid zip.
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-2">
+                                    <label for="Direccion">Dirección</label>
+                                    <textarea class="form-control" id="direccion" name="direccion" placeholder="Dirección" required></textarea>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid state.
+                                    </div>
+                                </div>                                    
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
@@ -100,13 +128,19 @@
                                         Usted debe estar de acuerdo antes de enviar.
                                     </div>
                                 </div>
+
                             </div>
-                            <button name="register" class="btn btn-primary" type="submit">Registra</button>
+                            <div class="form-group">
+                                <div class="col-md-12 mb-2">
+                                    <button name="register" class="btn btn-primary" type="submit">Registra</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <%@include file="layouts/footer.jsp" %>
         <!-- container -->
         <!-- Bootstrap core JavaScript -->
         <%@include file="layouts/js.jsp" %>

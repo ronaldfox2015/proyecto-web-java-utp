@@ -192,5 +192,6 @@
         <!-- /.container -->
         <!-- Bootstrap core JavaScript -->
         <%@include file="layouts/js.jsp" %>
+        <%@include file="layouts/footer.jsp" %>
     </body>
 </html>
