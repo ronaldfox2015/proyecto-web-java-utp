@@ -8,7 +8,6 @@ package controller;
 import entity.Company;
 import entity.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +33,8 @@ import model.ModelCompany;
 )
 public class CompanyServlet extends HttpServlet {
 
-    ModelCompany modelCompany;
+    ModelCompany modelCompany = new ModelCompany();
+    RequestDispatcher dispatcher;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,21 +68,6 @@ public class CompanyServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     protected void createAccount(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -114,8 +99,7 @@ public class CompanyServlet extends HttpServlet {
         company.setAddress(address);
         company.setUser(user);
         modelCompany.register(company);
-
-        // processUrl("/empresa/dasword", request, response);
+        processUrl("/empresa/dasword", request, response);
     }
 
     protected void dasword(HttpServletRequest request, HttpServletResponse response)
@@ -150,7 +134,22 @@ public class CompanyServlet extends HttpServlet {
 
         if (rd != null) {
             rd.forward(request, response);
-        }
+        }       
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -164,7 +163,6 @@ public class CompanyServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         processRequest(request, response);
     }
 
@@ -177,5 +175,4 @@ public class CompanyServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

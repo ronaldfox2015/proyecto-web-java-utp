@@ -7,6 +7,8 @@ package model;
 
 import entity.Company;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,8 +16,8 @@ import java.sql.SQLException;
  */
 public class ModelCompany {
 
-    private ModelUser modelUser;
-    private ModelCreateCompany modelCreateCompany;
+    private final ModelUser modelUser;
+    private final ModelCreateCompany modelCreateCompany;
 
     public ModelCompany() {
         this.modelUser = new ModelUser();
@@ -23,8 +25,13 @@ public class ModelCompany {
     }
 
     public void register(Company company) {
-        this.modelUser.create(company.getUser());
-        this.modelCreateCompany.save(company);
+        try {
+            this.modelUser.create(company.getUser());
+            this.modelCreateCompany.save(company);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(ModelCreateCompany.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
 
     }
 

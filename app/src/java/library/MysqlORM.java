@@ -7,8 +7,6 @@ package library;
  */
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Clase encargada de conectar a MySQL, permitiendo realizar consultas y
@@ -80,23 +78,21 @@ public class MysqlORM {
      *
      * @return boolean Resultado de la operacion TRUE si se conecto
      * exitosamente, FALSE en caso contrario.
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.lang.InstantiationException
+     * @throws java.lang.IllegalAccessException
      */
-    public boolean conectar() {
+    public boolean conectar() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         try {
 
-            Class.forName(MysqlORM.CLASE);
+            Class.forName(CLASE).newInstance();
             this.link = DriverManager.getConnection(this.url, this.usuario, this.clave);
 
         } catch (SQLException e) {
             this.mensajeError = e.getMessage();
             return false;
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MysqlORM.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-
-        }
-
+        } 
         return true;
     }
 

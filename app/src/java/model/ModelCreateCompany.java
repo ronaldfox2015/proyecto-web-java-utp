@@ -16,13 +16,13 @@ import java.util.logging.Logger;
  */
 public class ModelCreateCompany {
 
-    AdapterOrm orm;
-    ModelUser modelUser;
+   private final AdapterOrm orm;
+   
     public ModelCreateCompany() {
         this.orm = new AdapterOrm();
     }
     
-    public void save(Company company){
+    public void save(Company company) throws ClassNotFoundException, InstantiationException{
         try {
             String sql = "INSERT INTO `tbempresa`("
                     + "`id`,"
@@ -50,8 +50,8 @@ public class ModelCreateCompany {
                     + "); ";
             this.orm.insert(sql);           
             company.setId(this.orm.getId());
-        } catch (SQLException ex) {
-            Logger.getLogger(ModelCreateCompany.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException | IllegalAccessException ex) {
+           Logger.getLogger(ModelCreateCompany.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

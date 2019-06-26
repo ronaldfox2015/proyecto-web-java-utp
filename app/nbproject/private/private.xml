@@ -4,14 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/CompanyServlet.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/entity/User.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/AdapterOrm.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/entity/Company.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/WEB-INF/web.xml</file>
             <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/HomeServlet.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/NewServlet.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/AdapterOrm.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/index.jsp</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/library/MysqlORM.java</file>
             <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelUser.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelCreateCompany.java</file>
             <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/web/view/register-company.jsp</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelCompany.java</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/nbproject/build-impl.xml</file>
+            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/library/DateTime.java</file>
         </group>
     </open-files>
 </project-private>

@@ -38,7 +38,7 @@
                         <div class="card-body">
 
                         </div>
-                        <form action="/empresa/create-acount" method="post" class="needs-validation" novalidate>
+                        <form action="/empresa/create-acount"  method="post" class="needs-validation"  novalidate>
                             <div class="form-row">
                                 <div class="col-md-6 mb-2">
                                     <label for="validationCustom01">Nombre</label>

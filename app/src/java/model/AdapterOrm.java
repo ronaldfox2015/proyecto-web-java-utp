@@ -14,7 +14,7 @@ import library.MysqlORM;
  */
 public class AdapterOrm {
     
-   private MysqlORM mysqlOrm;
+   private final MysqlORM mysqlOrm;
     /**
      * 
      */
@@ -26,8 +26,11 @@ public class AdapterOrm {
      * 
      * @param sql
      * @throws SQLException 
+     * @throws java.lang.ClassNotFoundException 
+     * @throws java.lang.InstantiationException 
+     * @throws java.lang.IllegalAccessException 
      */
-    public void insert(String sql) throws SQLException {
+    public void insert(String sql) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         if (this.mysqlOrm.conectar()) {
             if (this.mysqlOrm.consulta(sql)) {
                 this.mysqlOrm.desconectar();
@@ -40,6 +43,6 @@ public class AdapterOrm {
     
     public int getId()
     {
-        return this.getId();
+        return this.mysqlOrm.getId();
     }
 }
