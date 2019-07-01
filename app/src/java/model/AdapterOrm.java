@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import library.MysqlORM;
 
 /**
@@ -15,6 +16,7 @@ public class AdapterOrm {
 
     private final MysqlORM mysqlOrm;
     private int id;
+
     /**
      *
      */
@@ -22,10 +24,10 @@ public class AdapterOrm {
         this.mysqlOrm = new MysqlORM("192.168.1.60:3306", "root", "1234", "dbhparking");
     }
 
-   /**
-    * 
-    * @param sql 
-    */
+    /**
+     *
+     * @param sql
+     */
     public void insert(String sql) {
         int result;
         if (this.mysqlOrm.conectar()) {
@@ -38,5 +40,13 @@ public class AdapterOrm {
 
     public int getId() {
         return this.id;
+    }
+
+    public ArrayList<Object> list(String sql) {
+        ArrayList<Object> list = new ArrayList<>();
+        if (this.mysqlOrm.conectar()) {
+            list = this.mysqlOrm.list(sql);
+        }
+        return list;
     }
 }

@@ -13,12 +13,14 @@ import entity.User;
  */
 public class ModelUser {
 
+    AdapterOrm mysql;
 
+    public ModelUser() {
+        mysql = new AdapterOrm();
+    }
 
     public void create(User user) {
         int id;
-        AdapterOrm mysql;
-        mysql = new AdapterOrm();
         String sql = "INSERT INTO `tbusuario`"
                 + "("
                 + "`id`,"
@@ -33,8 +35,8 @@ public class ModelUser {
                 + ") "
                 + "VALUES ( "
                 + "NULL,"
-                + "'" +  user.getMail() + "'"  + ","
-                + "'" + user.getPassword()+ "'" + ","
+                + "'" + user.getMail() + "'" + ","
+                + "'" + user.getPassword() + "'" + ","
                 + "'" + user.getRole() + "'" + ","
                 + "'" + user.getName() + "'" + ","
                 + "'" + user.getLastName() + "'" + ","
@@ -42,8 +44,10 @@ public class ModelUser {
                 + "'" + user.getUpdateDate() + "'" + ","
                 + "'" + user.getStatus() + "'"
                 + "); ";
-       mysql.insert(sql);
-       id = mysql.getId();
-       user.setId(id);
+        this.mysql.insert(sql);
+        id = this.mysql.getId();
+        user.setId(id);
     }
+
+
 }

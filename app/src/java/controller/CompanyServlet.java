@@ -15,9 +15,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import library.DateTime;
 import model.ModelCompany;
 import model.ModelUser;
+import model.Session;
 
 /**
  *
@@ -36,6 +38,7 @@ import model.ModelUser;
 public class CompanyServlet extends HttpServlet {
 
     RequestDispatcher dispatcher;
+    Session session;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -70,6 +73,7 @@ public class CompanyServlet extends HttpServlet {
 
     }
 
+    @SuppressWarnings("empty-statement")
     protected void createAccount(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ModelCompany modelCompany = new ModelCompany();
@@ -103,14 +107,23 @@ public class CompanyServlet extends HttpServlet {
         company.setAddress(address);
         company.creationDate();
         company.setUser(user);
-        
+
         modelCompany.register(company);
-        processUrl("/empresa/dasword", request, response);
+
+        HttpSession sessionCompany;
+        sessionCompany = request.getSession(true);
+        sessionCompany.setAttribute("company", company);
+        
+        response.sendRedirect("/empresa/dasword");;
+
     }
 
     protected void dasword(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        HttpSession sessionCompany;
+        sessionCompany = (HttpSession) request.getSession();
+        Company company = (Company) sessionCompany.getAttribute("company");
+        request.setAttribute("company", company);
         dispatcher = request.getRequestDispatcher(
                 "/view/company-dasword.jsp");
         dispatcher.forward(request, response);

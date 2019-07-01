@@ -34,7 +34,7 @@ public class Company {
 
     public Company() {
         DateTime date = new DateTime();
-        this.updateDate = date.format("yyyy-MM-dd");
+        this.updateDate = date.format("yyyy-MM-dd HH:mm:ss");
         this.status = User.STATUS_ACTIVATE;
 
     }
@@ -69,7 +69,7 @@ public class Company {
 
     public void creationDate() {
         DateTime date = new DateTime();
-        this.creationDate = date.format("yyyy-MM-dd");
+        this.creationDate = date.format("yyyy-MM-dd HH:mm:ss");
     }
 
     public String getUpdateDate() {

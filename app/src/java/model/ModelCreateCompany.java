@@ -12,7 +12,6 @@ import entity.Company;
  * @author ronald
  */
 public class ModelCreateCompany {
-
     
     public void save(Company company) {
         AdapterOrm mysql;   
