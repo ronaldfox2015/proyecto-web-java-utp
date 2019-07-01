@@ -1,23 +1,26 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Versión del servidor:         10.1.40-MariaDB - mariadb.org binary distribution
--- SO del servidor:              Win64
--- HeidiSQL Versión:             9.5.0.5196
--- --------------------------------------------------------
+/*
+SQLyog Ultimate v9.02 
+MySQL - 5.5.62 : Database - dbhparking
+*********************************************************************
+*/
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`dbhparking` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-
--- Volcando estructura de base de datos para dbhparking
-CREATE DATABASE IF NOT EXISTS `dbhparking` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci */;
 USE `dbhparking`;
 
--- Volcando estructura para tabla dbhparking.tbcliente
-CREATE TABLE IF NOT EXISTS `tbcliente` (
+/*Table structure for table `tbcliente` */
+
+DROP TABLE IF EXISTS `tbcliente`;
+
+CREATE TABLE `tbcliente` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` int(11) DEFAULT NULL,
   `dni` varchar(8) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -28,12 +31,13 @@ CREATE TABLE IF NOT EXISTS `tbcliente` (
   CONSTRAINT `FK_tbcliente_tbcliente` FOREIGN KEY (`idUsuario`) REFERENCES `tbcliente` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Volcando datos para la tabla dbhparking.tbcliente: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tbcliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbcliente` ENABLE KEYS */;
+/*Data for the table `tbcliente` */
 
--- Volcando estructura para tabla dbhparking.tbcochera
-CREATE TABLE IF NOT EXISTS `tbcochera` (
+/*Table structure for table `tbcochera` */
+
+DROP TABLE IF EXISTS `tbcochera`;
+
+CREATE TABLE `tbcochera` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idEmpresa` int(11) DEFAULT NULL,
   `idTarifa` int(11) DEFAULT NULL,
@@ -52,18 +56,19 @@ CREATE TABLE IF NOT EXISTS `tbcochera` (
   CONSTRAINT `FK_tbcochera_tbubicacion` FOREIGN KEY (`idUbicacion`) REFERENCES `tbubicacion` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Volcando datos para la tabla dbhparking.tbcochera: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tbcochera` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbcochera` ENABLE KEYS */;
+/*Data for the table `tbcochera` */
 
--- Volcando estructura para tabla dbhparking.tbempresa
-CREATE TABLE IF NOT EXISTS `tbempresa` (
+/*Table structure for table `tbempresa` */
+
+DROP TABLE IF EXISTS `tbempresa`;
+
+CREATE TABLE `tbempresa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idUsuario` int(11) DEFAULT NULL,
   `razonSocial` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `fechaCreacion` datetime DEFAULT NULL,
   `fechaActualizacion` datetime DEFAULT NULL,
-  `ruc` varchar(9) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `ruc` varchar(11) COLLATE latin1_spanish_ci DEFAULT NULL,
   `celular` varchar(9) COLLATE latin1_spanish_ci DEFAULT NULL,
   `nombreComercial` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `direccion` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -74,12 +79,13 @@ CREATE TABLE IF NOT EXISTS `tbempresa` (
   CONSTRAINT `FK_tbempresa_tbusuario` FOREIGN KEY (`idUsuario`) REFERENCES `tbusuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Volcando datos para la tabla dbhparking.tbempresa: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tbempresa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbempresa` ENABLE KEYS */;
+/*Data for the table `tbempresa` */
 
--- Volcando estructura para tabla dbhparking.tbreserva
-CREATE TABLE IF NOT EXISTS `tbreserva` (
+/*Table structure for table `tbreserva` */
+
+DROP TABLE IF EXISTS `tbreserva`;
+
+CREATE TABLE `tbreserva` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idVehiculo` int(11) DEFAULT NULL,
   `idCochera` int(11) DEFAULT NULL,
@@ -93,12 +99,13 @@ CREATE TABLE IF NOT EXISTS `tbreserva` (
   CONSTRAINT `FK_tbreserva_tbvehiculo` FOREIGN KEY (`idVehiculo`) REFERENCES `tbvehiculo` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Volcando datos para la tabla dbhparking.tbreserva: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tbreserva` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbreserva` ENABLE KEYS */;
+/*Data for the table `tbreserva` */
 
--- Volcando estructura para tabla dbhparking.tbtarifa
-CREATE TABLE IF NOT EXISTS `tbtarifa` (
+/*Table structure for table `tbtarifa` */
+
+DROP TABLE IF EXISTS `tbtarifa`;
+
+CREATE TABLE `tbtarifa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `precio` float DEFAULT NULL,
@@ -107,12 +114,13 @@ CREATE TABLE IF NOT EXISTS `tbtarifa` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Volcando datos para la tabla dbhparking.tbtarifa: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tbtarifa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbtarifa` ENABLE KEYS */;
+/*Data for the table `tbtarifa` */
 
--- Volcando estructura para tabla dbhparking.tbubicacion
-CREATE TABLE IF NOT EXISTS `tbubicacion` (
+/*Table structure for table `tbubicacion` */
+
+DROP TABLE IF EXISTS `tbubicacion`;
+
+CREATE TABLE `tbubicacion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `padre` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -121,12 +129,13 @@ CREATE TABLE IF NOT EXISTS `tbubicacion` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Volcando datos para la tabla dbhparking.tbubicacion: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tbubicacion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbubicacion` ENABLE KEYS */;
+/*Data for the table `tbubicacion` */
 
--- Volcando estructura para tabla dbhparking.tbusuario
-CREATE TABLE IF NOT EXISTS `tbusuario` (
+/*Table structure for table `tbusuario` */
+
+DROP TABLE IF EXISTS `tbusuario`;
+
+CREATE TABLE `tbusuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `correo` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
   `password` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -137,14 +146,17 @@ CREATE TABLE IF NOT EXISTS `tbusuario` (
   `fechaActualizacion` datetime DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Volcando datos para la tabla dbhparking.tbusuario: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tbusuario` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbusuario` ENABLE KEYS */;
+/*Data for the table `tbusuario` */
 
--- Volcando estructura para tabla dbhparking.tbvehiculo
-CREATE TABLE IF NOT EXISTS `tbvehiculo` (
+insert  into `tbusuario`(`id`,`correo`,`password`,`rol`,`nombre`,`apellido`,`fechaCreacion`,`fechaActualizacion`,`estado`) values (23,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(24,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(25,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(26,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(27,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(28,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1);
+
+/*Table structure for table `tbvehiculo` */
+
+DROP TABLE IF EXISTS `tbvehiculo`;
+
+CREATE TABLE `tbvehiculo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idCliente` int(11) DEFAULT NULL,
   `placa` varchar(7) COLLATE latin1_spanish_ci DEFAULT NULL,
@@ -157,10 +169,9 @@ CREATE TABLE IF NOT EXISTS `tbvehiculo` (
   CONSTRAINT `FK_tbvehiculo_tbcliente` FOREIGN KEY (`idCliente`) REFERENCES `tbcliente` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- Volcando datos para la tabla dbhparking.tbvehiculo: ~0 rows (aproximadamente)
-/*!40000 ALTER TABLE `tbvehiculo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbvehiculo` ENABLE KEYS */;
+/*Data for the table `tbvehiculo` */
 
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

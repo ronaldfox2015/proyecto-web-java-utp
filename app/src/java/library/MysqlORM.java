@@ -7,6 +7,8 @@ package library;
  */
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase encargada de conectar a MySQL, permitiendo realizar consultas y
@@ -78,21 +80,20 @@ public class MysqlORM {
      *
      * @return boolean Resultado de la operacion TRUE si se conecto
      * exitosamente, FALSE en caso contrario.
-     * @throws java.lang.ClassNotFoundException
-     * @throws java.lang.InstantiationException
-     * @throws java.lang.IllegalAccessException
      */
-    public boolean conectar() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public boolean conectar() {
 
         try {
 
-            Class.forName(CLASE).newInstance();
+            Class.forName(CLASE);
             this.link = DriverManager.getConnection(this.url, this.usuario, this.clave);
 
         } catch (SQLException e) {
-            this.mensajeError = e.getMessage();
+
             return false;
-        } 
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MysqlORM.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return true;
     }
 
@@ -101,30 +102,30 @@ public class MysqlORM {
      * (INSERT, UPDATE, DELETE).
      *
      * @param consulta Consulta a ejecutar
-     * @return boolean Resultado de la operacion TRUE si se desconecto
-     * exitosamente, FALSE en caso contrario.
+     * @return int Resultado de la operacion exitosamente, FALSE en caso
+     * contrario.
      */
-    public boolean consulta(String consulta) {
+    public boolean query(String consulta) {
 
-        int resultado;
-
+        int resultado, response = 0;
+        boolean queryResponse = false;
         try {
 
             this.statement = this.link.createStatement();
-            resultado = this.statement.executeUpdate(consulta);
-            try (ResultSet generatedKeys = this.statement.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    this.id = generatedKeys.getInt(1);
-                } else {
-                    return false;
-                }
+            resultado = this.statement.executeUpdate(consulta, Statement.RETURN_GENERATED_KEYS);
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                response = generatedKeys.getInt(1);
+                queryResponse = true;
+                this.id = response;
             }
+
         } catch (SQLException e) {
-            this.mensajeError = e.getMessage();
-            return false;
+            Logger.getLogger(MysqlORM.class.getName()).log(Level.SEVERE, null, e);
+            queryResponse = false;
         }
 
-        return (resultado > 0);
+        return queryResponse;
     }
 
     public int getId() {

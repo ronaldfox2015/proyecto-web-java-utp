@@ -6,9 +6,6 @@
 package model;
 
 import entity.User;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -16,43 +13,37 @@ import java.util.logging.Logger;
  */
 public class ModelUser {
 
-   private AdapterOrm orm;
 
-    public ModelUser() {
-        orm = new AdapterOrm();
-    }
 
-    public void create(User user) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-
-        try {
-            String sql = "INSERT INTO `tbusuario`"
-                    + "("
-                    + "`id`,"
-                    + "`correo`,"
-                    + "`password`,"
-                    + "`rol`,"
-                    + "`nombre`,"
-                    + "`apellido`,"
-                    + "`fechaCreacion`,"
-                    + "`fechaActualizacion`,"
-                    + "`estado`"
-                    + ") "
-                    + "VALUES ( "
-                    + "NULL,"
-                    + user.getMail() + ","
-                    + "'" + user.getMail() + "'" + ","
-                    + "'" + user.getRole() + "'" + ","
-                    + "'" + user.getName() + "'" + ","
-                    + "'" + user.getLastName() + "'" + ","
-                    + "'" + user.getCreationDate() + "'" + ","
-                    + "'" + user.getUpdateDate() + "'" + ","
-                    + "'" + user.getStatus() + "'"
-                    + "); ";
-            
-            this.orm.insert(sql);
-            user.setId(this.orm.getId());
-        } catch (SQLException ex) {
-            Logger.getLogger(ModelUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void create(User user) {
+        int id;
+        AdapterOrm mysql;
+        mysql = new AdapterOrm();
+        String sql = "INSERT INTO `tbusuario`"
+                + "("
+                + "`id`,"
+                + "`correo`,"
+                + "`password`,"
+                + "`rol`,"
+                + "`nombre`,"
+                + "`apellido`,"
+                + "`fechaCreacion`,"
+                + "`fechaActualizacion`,"
+                + "`estado`"
+                + ") "
+                + "VALUES ( "
+                + "NULL,"
+                + "'" +  user.getMail() + "'"  + ","
+                + "'" + user.getPassword()+ "'" + ","
+                + "'" + user.getRole() + "'" + ","
+                + "'" + user.getName() + "'" + ","
+                + "'" + user.getLastName() + "'" + ","
+                + "'" + user.getCreationDate() + "'" + ","
+                + "'" + user.getUpdateDate() + "'" + ","
+                + "'" + user.getStatus() + "'"
+                + "); ";
+       mysql.insert(sql);
+       id = mysql.getId();
+       user.setId(id);
     }
 }

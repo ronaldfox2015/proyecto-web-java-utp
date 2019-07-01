@@ -6,9 +6,6 @@
 package model;
 
 import entity.Company;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -16,42 +13,35 @@ import java.util.logging.Logger;
  */
 public class ModelCreateCompany {
 
-   private final AdapterOrm orm;
-   
-    public ModelCreateCompany() {
-        this.orm = new AdapterOrm();
-    }
     
-    public void save(Company company) throws ClassNotFoundException, InstantiationException{
-        try {
-            String sql = "INSERT INTO `tbempresa`("
-                    + "`id`,"
-                    + "`idUsuario`,"
-                    + "`razonSocial`,"
-                    + "`fechaCreacion`,"
-                    + "`fechaActualizacion`,"
-                    + "`ruc`,"
-                    + "`celular`,"
-                    + "`nombreComercial`,"
-                    + "`direccion`,"
-                    + "`logo`,"
-                    + "`estado`) VALUES ("
-                    + " NULL,"
-                    + company.getUser().getId()+","
-                    + "'"+ company.getBusinessName() +"'" +","
-                    + "'"+ company.getCreationDate()+"'" +","
-                    + "'"+ company.getUpdateDate()+"'" +","
-                    + "'"+ company.getRuc()+"'" +","
-                    + "'"+ company.getMobile()+"'" +","
-                    + "'"+ company.getTradename()+"'" +","
-                    + "'"+ company.getAddress()+"'" +","
-                    + "'"+ company.getLogo()+"'" +","
-                    + "'"+ company.getStatus()+"'"
-                    + "); ";
-            this.orm.insert(sql);           
-            company.setId(this.orm.getId());
-        } catch (SQLException | IllegalAccessException ex) {
-           Logger.getLogger(ModelCreateCompany.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void save(Company company) {
+        AdapterOrm mysql;   
+        mysql = new AdapterOrm();
+        String sql = "INSERT INTO `tbempresa`("
+                + "`id`,"
+                + "`idUsuario`,"
+                + "`razonSocial`,"
+                + "`fechaCreacion`,"
+                + "`fechaActualizacion`,"
+                + "`ruc`,"
+                + "`celular`,"
+                + "`nombreComercial`,"
+                + "`direccion`,"
+                + "`logo`,"
+                + "`estado`) VALUES ("
+                + " NULL,"
+                + company.getUser().getId()+","
+                + "'"+ company.getBusinessName() +"'" +","
+                + "'"+ company.getCreationDate()+"'" +","
+                + "'"+ company.getUpdateDate()+"'" +","
+                + "'"+ company.getRuc()+"'" +","
+                + "'"+ company.getMobile()+"'" +","
+                + "'"+ company.getTradename()+"'" +","
+                + "'"+ company.getAddress()+"'" +","
+                + "'"+ company.getLogo()+"'" +","
+                + "'"+ company.getStatus()+"'"
+                + "); ";
+       mysql.insert(sql);
+       company.setId(mysql.getId());
     }
 }

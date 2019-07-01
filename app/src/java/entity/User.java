@@ -32,6 +32,7 @@ public class User {
     public User() {
         DateTime date = new DateTime();
         this.updateDate = date.format("yyyy-MM-dd");
+
         this.status = User.STATUS_ACTIVATE;
     }
 

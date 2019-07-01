@@ -5,7 +5,6 @@
  */
 package model;
 
-import java.sql.SQLException;
 import library.MysqlORM;
 
 /**
@@ -13,36 +12,31 @@ import library.MysqlORM;
  * @author ronald
  */
 public class AdapterOrm {
-    
-   private final MysqlORM mysqlOrm;
+
+    private final MysqlORM mysqlOrm;
+    private int id;
     /**
-     * 
+     *
      */
     public AdapterOrm() {
-       mysqlOrm = new MysqlORM("192.168.1.60:3306", "root", "1234", "dbhparking");
+        this.mysqlOrm = new MysqlORM("192.168.1.60:3306", "root", "1234", "dbhparking");
     }
 
-    /**
-     * 
-     * @param sql
-     * @throws SQLException 
-     * @throws java.lang.ClassNotFoundException 
-     * @throws java.lang.InstantiationException 
-     * @throws java.lang.IllegalAccessException 
-     */
-    public void insert(String sql) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+   /**
+    * 
+    * @param sql 
+    */
+    public void insert(String sql) {
+        int result;
         if (this.mysqlOrm.conectar()) {
-            if (this.mysqlOrm.consulta(sql)) {
+            if (this.mysqlOrm.query(sql) == true) {
+                this.id = mysqlOrm.getId();
                 this.mysqlOrm.desconectar();
             }
-            throw new SQLException("No se puedo realizar la consulta.");
-
         }
-        throw new SQLException("No se puedo Realizar la conexión.");
     }
-    
-    public int getId()
-    {
-        return this.mysqlOrm.getId();
+
+    public int getId() {
+        return this.id;
     }
 }

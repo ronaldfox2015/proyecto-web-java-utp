@@ -67,8 +67,9 @@ public class Company {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
+    public void creationDate() {
+        DateTime date = new DateTime();
+        this.creationDate = date.format("yyyy-MM-dd");
     }
 
     public String getUpdateDate() {

@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletContext;
+import library.DateTime;
 import model.ModelCompany;
+import model.ModelUser;
 
 /**
  *
@@ -33,7 +35,6 @@ import model.ModelCompany;
 )
 public class CompanyServlet extends HttpServlet {
 
-    ModelCompany modelCompany = new ModelCompany();
     RequestDispatcher dispatcher;
 
     /**
@@ -63,13 +64,17 @@ public class CompanyServlet extends HttpServlet {
                 this.home(request, response);
                 break;
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher(
+
+        dispatcher = request.getRequestDispatcher(
                 "/view/index.jsp");
-        dispatcher.forward(request, response);
+
     }
 
     protected void createAccount(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ModelCompany modelCompany = new ModelCompany();
+        ModelUser userModel = new ModelUser();
+        DateTime date = new DateTime();
 
         String name = request.getParameter("nombre");
         String lastName = request.getParameter("apellido");
@@ -88,16 +93,17 @@ public class CompanyServlet extends HttpServlet {
         user.setLastName(lastName);
         user.setMail(mail);
         user.setRole("empresa-user");
-
+        user.creationDate();
         user.setPassword(password);
 
         company.setBusinessName(businessName);
         company.setTradename(tradename);
-        company.setTradename(tradename);
         company.setRuc(ruc);
         company.setMobile(mobile);
         company.setAddress(address);
+        company.creationDate();
         company.setUser(user);
+        
         modelCompany.register(company);
         processUrl("/empresa/dasword", request, response);
     }
@@ -105,7 +111,7 @@ public class CompanyServlet extends HttpServlet {
     protected void dasword(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(
+        dispatcher = request.getRequestDispatcher(
                 "/view/company-dasword.jsp");
         dispatcher.forward(request, response);
     }
@@ -113,7 +119,7 @@ public class CompanyServlet extends HttpServlet {
     protected void registrationForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(
+        dispatcher = request.getRequestDispatcher(
                 "/view/register-company.jsp");
         dispatcher.forward(request, response);
     }
@@ -121,8 +127,7 @@ public class CompanyServlet extends HttpServlet {
     protected void home(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(
-                "/view/company.jsp");
+        dispatcher = request.getRequestDispatcher("/view/company.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -130,11 +135,9 @@ public class CompanyServlet extends HttpServlet {
             throws ServletException, IOException {
 
         ServletContext ctx = getServletContext();
-        RequestDispatcher rd = ctx.getRequestDispatcher(path);
-
-        if (rd != null) {
-            rd.forward(request, response);
-        }       
+        if (ctx.getRequestDispatcher(path) != null) {
+            ctx.getRequestDispatcher(path).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
