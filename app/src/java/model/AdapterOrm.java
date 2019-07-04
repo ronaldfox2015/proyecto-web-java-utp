@@ -5,7 +5,13 @@
  */
 package model;
 
+import entity.Company;
+import static java.nio.file.Files.list;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.Iterator;
 import library.MysqlORM;
 
 /**
@@ -16,6 +22,7 @@ public class AdapterOrm {
 
     private final MysqlORM mysqlOrm;
     private int id;
+    
 
     /**
      *
@@ -42,11 +49,15 @@ public class AdapterOrm {
         return this.id;
     }
 
-    public ArrayList<Object> list(String sql) {
-        ArrayList<Object> list = new ArrayList<>();
+    public ResultSet list(String sql) throws SQLException {
+        ResultSet response = null;
         if (this.mysqlOrm.conectar()) {
-            list = this.mysqlOrm.list(sql);
+            response = this.mysqlOrm.list(sql);        
         }
-        return list;
+        return response;
+    }
+
+    public MysqlORM mysqlOrm() {
+        return this.mysqlOrm;
     }
 }

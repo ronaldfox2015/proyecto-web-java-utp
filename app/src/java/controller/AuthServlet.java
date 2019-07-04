@@ -6,14 +6,18 @@
 package controller;
 
 import entity.Company;
+import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.Auth;
 
 /**
  *
@@ -21,6 +25,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "AuthServlet", urlPatterns = {"/login"})
 public class AuthServlet extends HttpServlet {
+
+    Auth session;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,15 +54,22 @@ public class AuthServlet extends HttpServlet {
         }
     }
 
-    protected void login(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void login(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            Company company = new Company();
-            HttpSession sessionCompany;
-            sessionCompany = request.getSession(true);
-            sessionCompany.setAttribute("company", company);
+            String mail = request.getParameter("email");
+            String password = request.getParameter("password");
+            String role = request.getParameter("rol");
 
+            User user = new User();
+            user.setMail(mail);
+            user.setPassword(password);
+            user.setRole(role);
+
+            Company dataCompany = session.company(user);
+
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(AuthServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -138,7 +138,7 @@ public class MysqlORM {
      * @param consulta Consulta a ejecutar
      * @return ArrayList Lista con los resultados obtenidos de la consulta
      */
-    public ArrayList<Object> list(String consulta) {
+    public ResultSet list(String consulta) {
 
         /* Resultados */
         ArrayList<Object> list = new ArrayList<>();
@@ -155,19 +155,8 @@ public class MysqlORM {
             return null;
         }
 
-        /* Guardamos el resultado */
-        try {
 
-            while (resultado.next()) {
-                list.add(resultado);
-            }
-
-        } catch (SQLException e) {
-            this.mensajeError = e.getMessage();
-            return null;
-        }
-
-        return list;
+        return resultado;
     }
 
     /**

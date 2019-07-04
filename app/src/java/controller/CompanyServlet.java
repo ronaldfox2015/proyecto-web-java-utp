@@ -8,6 +8,9 @@ package controller;
 import entity.Company;
 import entity.User;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +22,7 @@ import javax.servlet.http.HttpSession;
 import library.DateTime;
 import model.ModelCompany;
 import model.ModelUser;
-import model.Session;
+import model.Auth;
 
 /**
  *
@@ -37,8 +40,7 @@ import model.Session;
 )
 public class CompanyServlet extends HttpServlet {
 
-    RequestDispatcher dispatcher;
-    Session session;
+    private RequestDispatcher dispatcher;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,8 +51,7 @@ public class CompanyServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         String url = request.getServletPath();
 
         switch (url) {
@@ -68,80 +69,93 @@ public class CompanyServlet extends HttpServlet {
                 break;
         }
 
-        dispatcher = request.getRequestDispatcher(
-                "/view/index.jsp");
+        dispatcher = request.getRequestDispatcher("/view/index.jsp");
 
     }
 
     @SuppressWarnings("empty-statement")
-    protected void createAccount(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ModelCompany modelCompany = new ModelCompany();
-        ModelUser userModel = new ModelUser();
-        DateTime date = new DateTime();
+    protected void createAccount(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            ModelCompany modelCompany = new ModelCompany();
+            ModelUser userModel = new ModelUser();
+            DateTime date = new DateTime();
 
-        String name = request.getParameter("nombre");
-        String lastName = request.getParameter("apellido");
-        String mail = request.getParameter("email");
-        String password = request.getParameter("password");
+            String name = request.getParameter("nombre");
+            String lastName = request.getParameter("apellido");
+            String mail = request.getParameter("email");
+            String password = request.getParameter("password");
 
-        String businessName = request.getParameter("razon_social");
-        String tradename = request.getParameter("nombre_comercial");
-        String ruc = request.getParameter("ruc");
-        String mobile = request.getParameter("celular");
-        String address = request.getParameter("direccion");
+            String businessName = request.getParameter("razon_social");
+            String tradename = request.getParameter("nombre_comercial");
+            String ruc = request.getParameter("ruc");
+            String mobile = request.getParameter("celular");
+            String address = request.getParameter("direccion");
 
-        Company company = new Company();
-        User user = new User();
-        user.setName(name);
-        user.setLastName(lastName);
-        user.setMail(mail);
-        user.setRole("empresa-user");
-        user.creationDate();
-        user.setPassword(password);
+            Company company = new Company();
+            User user = new User();
+            user.setName(name);
+            user.setLastName(lastName);
+            user.setMail(mail);
+            user.setRole("empresa-user");
+            user.creationDate();
+            user.setPassword(password);
 
-        company.setBusinessName(businessName);
-        company.setTradename(tradename);
-        company.setRuc(ruc);
-        company.setMobile(mobile);
-        company.setAddress(address);
-        company.creationDate();
-        company.setUser(user);
+            company.setBusinessName(businessName);
+            company.setTradename(tradename);
+            company.setRuc(ruc);
+            company.setMobile(mobile);
+            company.setAddress(address);
+            company.creationDate();
+            company.setUser(user);
 
-        modelCompany.register(company);
+            modelCompany.register(company);
 
-        HttpSession sessionCompany;
-        sessionCompany = request.getSession(true);
-        sessionCompany.setAttribute("company", company);
-        
-        response.sendRedirect("/empresa/dasword");;
+            HttpSession sessionCompany;
+            sessionCompany = request.getSession(true);
+            sessionCompany.setAttribute("company", company);
+
+            response.sendRedirect("/empresa/dasword");
+        } catch (IOException ex) {
+            Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
+
+    protected void dasword(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+
+            HttpSession sessionCompany;
+            sessionCompany = (HttpSession) request.getSession();
+            Company company = (Company) sessionCompany.getAttribute("company");
+            request.setAttribute("company", company);
+            dispatcher = request.getRequestDispatcher("/view/company-dasword.jsp");
+            dispatcher.forward(request, response);
+
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
-    protected void dasword(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession sessionCompany;
-        sessionCompany = (HttpSession) request.getSession();
-        Company company = (Company) sessionCompany.getAttribute("company");
-        request.setAttribute("company", company);
-        dispatcher = request.getRequestDispatcher(
-                "/view/company-dasword.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    protected void registrationForm(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void registrationForm(HttpServletRequest request, HttpServletResponse response) {
 
         dispatcher = request.getRequestDispatcher(
                 "/view/register-company.jsp");
-        dispatcher.forward(request, response);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    protected void home(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void home(HttpServletRequest request, HttpServletResponse response) {
 
         dispatcher = request.getRequestDispatcher("/view/company.jsp");
-        dispatcher.forward(request, response);
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     protected void processUrl(String path, HttpServletRequest request, HttpServletResponse response)
@@ -153,7 +167,6 @@ public class CompanyServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

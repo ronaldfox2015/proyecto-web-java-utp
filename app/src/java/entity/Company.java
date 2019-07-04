@@ -72,6 +72,10 @@ public class Company {
         this.creationDate = date.format("yyyy-MM-dd HH:mm:ss");
     }
 
+    public void setCreationDate(String date) {
+        this.creationDate = date;
+    }
+
     public String getUpdateDate() {
         return updateDate;
     }
@@ -126,5 +130,9 @@ public class Company {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Company company(User user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

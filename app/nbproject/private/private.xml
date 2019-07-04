@@ -4,11 +4,6 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/CompanyServlet.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/AdapterOrm.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/HomeServlet.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelUser.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelCompany.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelCreateCompany.java</file>
         </group>
     </open-files>
 </project-private>
