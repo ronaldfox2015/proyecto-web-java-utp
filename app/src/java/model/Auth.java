@@ -23,80 +23,26 @@ import javax.servlet.http.HttpSession;
  */
 public class Auth {
 
-   private final AdapterOrm mysql;
+    ListCompany listCompany;
+    Company company;
 
     public Auth() {
-        mysql = new AdapterOrm();
+        listCompany = new ListCompany();
+        company = new Company();
     }
-    
-    public void login(User user)
-    {
-     
-    }
-    
-    public Company company(User user) throws SQLException {
-        String sql = "SELECT "
-                + "e.`id`  , "
-                + "e.`razonSocial`,"
-                + "e.`fechaCreacion`, "
-                + "e.`fechaActualizacion`,"
-                + "e.`ruc`, "
-                + "e.`celular`, "
-                + "e.`nombreComercial`, "
-                + "e.`direccion`, "
-                + "e.`logo`, "
-                + "e.`estado` AS estado_company, "
-                + "u.id AS id_usuario,"
-                + "u.`correo`,"
-                + "u.`password`,"
-                + "u.`rol`,"
-                + "u.`nombre`,"
-                + "u.`apellido`,"
-                + "u.`fechaCreacion`,"
-                + "u.`fechaActualizacion`, "
-                + "u.`estado`  AS estado_user "
-                + "FROM `tbempresa`  e INNER JOIN `tbusuario` u ON e.idUsuario=u.id "
-                + "WHERE "
-                + "u.`correo` = "
-                + "'" + user.getMail() + "'  AND "
-                + "u.`password`="
-                + "'" + user.getPassword() + "' "
-                + "AND u.`rol` ="
-                + "'" + user.getRole() + "';";
 
-        
-        Company company = new Company();
-        ResultSet rs = this.mysql.list(sql);
-        /* Guardamos el resultado */
-        while (rs.next()) {
-            company.setId(rs.getInt("id"));
-            company.setBusinessName(rs.getString("razonSocial"));
-            company.setCreationDate(rs.getString("fechaCreacion"));
-            company.setUpdateDate(rs.getString("fechaActualizacion"));
-
-            company.setRuc(rs.getString("ruc"));
-            company.setMobile(rs.getString("celular"));
-            company.setTradename(rs.getString("nombreComercial"));
-            company.setAddress(rs.getString("direccion"));
-            company.setTradename(rs.getString("nombreComercial"));
-            company.setLogo(rs.getString("logo"));
-            company.setStatus(rs.getInt("estado_company"));
-            company.setTradename(rs.getString("nombreComercial"));
-
-            User userCompany = new User();
-            userCompany.setId(rs.getInt("id_usuario"));
-            userCompany.setName(rs.getString("nombre"));
-            userCompany.setLastName(rs.getString("apellido"));
-            userCompany.setMail(rs.getString("correo"));
-            userCompany.setPassword(rs.getString("password"));
-
-            userCompany.setRole(rs.getString("rol"));
-            userCompany.creationDate();
-
-            userCompany.setStatus(rs.getInt("estado_user"));
-            company.setUser(userCompany);
+    public boolean isLogin(User user) throws SQLException {
+        boolean isLogin = false;
+        if (user.getRole().equals("admin-empresa")) {
+            company = listCompany.getUserCompany(user);
+            if (company.getId()> 0) {
+                isLogin = true;
+            }
         }
-        return company;
+        return isLogin;
     }
 
+    public Company getCompany() {
+        return this.company;
+    }
 }

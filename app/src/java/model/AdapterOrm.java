@@ -52,7 +52,8 @@ public class AdapterOrm {
     public ResultSet list(String sql) throws SQLException {
         ResultSet response = null;
         if (this.mysqlOrm.conectar()) {
-            response = this.mysqlOrm.list(sql);        
+            response = this.mysqlOrm.list(sql);    
+            this.mysqlOrm.desconectar();
         }
         return response;
     }

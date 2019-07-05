@@ -37,6 +37,8 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
 
         RequestDispatcher dispatcher;
+        request.setAttribute("href-empresa", "/registrar");
+        
         dispatcher = request.getRequestDispatcher(
                 "/view/home.jsp");
 

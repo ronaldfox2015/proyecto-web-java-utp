@@ -26,7 +26,11 @@ import model.Auth;
 @WebServlet(name = "AuthServlet", urlPatterns = {"/login"})
 public class AuthServlet extends HttpServlet {
 
-    Auth session;
+    Auth auth;
+
+    public AuthServlet() {
+        auth = new Auth();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -56,7 +60,7 @@ public class AuthServlet extends HttpServlet {
 
     protected void login(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try {
             String mail = request.getParameter("email");
             String password = request.getParameter("password");
             String role = request.getParameter("rol");
@@ -65,12 +69,16 @@ public class AuthServlet extends HttpServlet {
             user.setMail(mail);
             user.setPassword(password);
             user.setRole(role);
-
-            Company dataCompany = session.company(user);
-
-        } catch (IOException | SQLException ex) {
+            boolean isLogin;
+            isLogin = auth.isLogin(user);
+            if(isLogin){
+                
+            }
+            
+        } catch (SQLException ex) {
             Logger.getLogger(AuthServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -53,6 +53,7 @@ public class CompanyServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         String url = request.getServletPath();
+        request.setAttribute("href-empresa", "/empresa/registrar");
 
         switch (url) {
             case "/empresa/create-acount":
@@ -68,7 +69,7 @@ public class CompanyServlet extends HttpServlet {
                 this.home(request, response);
                 break;
         }
-
+            
         dispatcher = request.getRequestDispatcher("/view/index.jsp");
 
     }
@@ -96,7 +97,7 @@ public class CompanyServlet extends HttpServlet {
             user.setName(name);
             user.setLastName(lastName);
             user.setMail(mail);
-            user.setRole("empresa-user");
+            user.setRole("admin-empresa");
             user.creationDate();
             user.setPassword(password);
 

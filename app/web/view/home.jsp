@@ -3,8 +3,7 @@
     Created on : 20/06/2019, 10:36:30 PM
     Author     : ronald
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language='java' contentType='text/html;charset=iso-8859-1'%>
 <!DOCTYPE html>
 <html>
     <head>

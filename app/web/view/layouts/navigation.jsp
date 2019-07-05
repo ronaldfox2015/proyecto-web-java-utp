@@ -31,7 +31,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <a class="dropdown-item text-warning" href="full-width.html">Ingresar</a>
-                        <a class="dropdown-item text-warning" href="/empresa/registrar">Registrate</a>
+                        <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-empresa")%>">Registrate</a>
                     </div>
                 </li>
 
