@@ -1,3 +1,4 @@
+<%@page import="entity.Company"%>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/home">
@@ -30,8 +31,13 @@
                         <img src="${request.getContextPath()}/../static/img/login.png" width="30px" height="30px" alt="">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <% Company company = (Company) request.getAttribute("company_session");%>
+                        <%if (company == null) {%>
                         <a data-toggle="modal" data-target="#modalLogin" class="dropdown-item text-warning" href="#modalLogin">Ingresar</a>
                         <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-empresa")%>">Registrate</a>
+                        <%} else {%>
+                        <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-my-account")%>">Mi cuenta</a>
+                        <%}%>
                     </div>
                 </li>
 

@@ -5,7 +5,6 @@
  */
 package controller;
 
-import entity.Company;
 import entity.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,18 +17,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Auth;
+import com.google.gson.JsonObject;
+import entity.Company;
+import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
+import library.DtoResponse;
+import library.Json;
 
 /**
  *
  * @author ronald
  */
-@WebServlet(name = "AuthServlet", urlPatterns = {"/login"})
+@WebServlet(name = "AuthServlet", urlPatterns = {"/auth/login"})
 public class AuthServlet extends HttpServlet {
 
     Auth auth;
+    Json json;
 
     public AuthServlet() {
         auth = new Auth();
+        json = new Json();
     }
 
     /**
@@ -43,42 +50,55 @@ public class AuthServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AuthServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AuthServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = request.getServletPath();
+
+        switch (url) {
+            case "/auth/login":
+                this.login(request, response);
+                break;
+
         }
     }
 
     protected void login(HttpServletRequest request, HttpServletResponse response) {
-        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = null;
+
+        DtoResponse dtoSession = new DtoResponse();
+        ArrayList<Object> list = new ArrayList();
         try {
+            response.setContentType("application/json");
+            User user = new User();
+            Company company = new Company();
+            JsonObject object = new JsonObject();
+            out = response.getWriter();
+
             String mail = request.getParameter("email");
             String password = request.getParameter("password");
             String role = request.getParameter("rol");
-
-            User user = new User();
             user.setMail(mail);
             user.setPassword(password);
             user.setRole(role);
             boolean isLogin;
             isLogin = auth.isLogin(user);
-            if(isLogin){
-                
+            dtoSession.setMessages(auth.getMessages());
+            if (isLogin) {
+                Company responseAuth = auth.getCompany();
+                HttpSession sessionCompany;
+                sessionCompany = request.getSession(true);
+                sessionCompany.setAttribute("company_session", responseAuth);
+                dtoSession.setMessages("Se ingreso correctamente");
+                dtoSession.setStatus(true);
+                dtoSession.setData(list);
             }
             
-        } catch (SQLException ex) {
+
+        } catch (IOException ex) {
+            dtoSession.setMessages(ex.getMessage());
             Logger.getLogger(AuthServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        String responseJson = this.json.convert(dtoSession);
+        out.println(responseJson);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

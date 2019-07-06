@@ -54,13 +54,20 @@ public class CompanyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         String url = request.getServletPath();
         request.setAttribute("href-empresa", "/empresa/registrar");
+        request.setAttribute("href-my-account", "/empresa/mi-cuenta");
+        HttpSession sessionCompany;
+        sessionCompany = (HttpSession) request.getSession();
 
         switch (url) {
             case "/empresa/create-acount":
                 this.createAccount(request, response);
                 break;
             case "/empresa/dasword":
-                this.dasword(request, response);
+                Company company = (Company) sessionCompany.getAttribute("company_session");
+                request.setAttribute("company_session", company);
+                if (company != null) {
+                    this.dasword(request, response);
+                }
                 break;
             case "/empresa/registrar":
                 this.registrationForm(request, response);
@@ -69,8 +76,12 @@ public class CompanyServlet extends HttpServlet {
                 this.home(request, response);
                 break;
         }
-            
-        dispatcher = request.getRequestDispatcher("/view/index.jsp");
+
+        try {
+            response.sendRedirect("/empresa");
+        } catch (IOException ex) {
+            Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -113,22 +124,18 @@ public class CompanyServlet extends HttpServlet {
 
             HttpSession sessionCompany;
             sessionCompany = request.getSession(true);
-            sessionCompany.setAttribute("company", company);
+            sessionCompany.setAttribute("company_session", company);
 
             response.sendRedirect("/empresa/dasword");
         } catch (IOException ex) {
             Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }     
+        }
     }
 
     protected void dasword(HttpServletRequest request, HttpServletResponse response) {
 
         try {
 
-            HttpSession sessionCompany;
-            sessionCompany = (HttpSession) request.getSession();
-            Company company = (Company) sessionCompany.getAttribute("company");
-            request.setAttribute("company", company);
             dispatcher = request.getRequestDispatcher("/view/company-dasword.jsp");
             dispatcher.forward(request, response);
 

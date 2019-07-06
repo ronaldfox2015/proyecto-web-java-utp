@@ -5,6 +5,7 @@
  */
 package controller;
 
+import entity.Company;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,10 +37,14 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sessionCompany;
+        sessionCompany = (HttpSession) request.getSession();
+        Company company = (Company) sessionCompany.getAttribute("company_session");
+        request.setAttribute("company_session", company);
 
         RequestDispatcher dispatcher;
         request.setAttribute("href-empresa", "/registrar");
-        
+
         dispatcher = request.getRequestDispatcher(
                 "/view/home.jsp");
 

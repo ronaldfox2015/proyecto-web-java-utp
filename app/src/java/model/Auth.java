@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
  */
 public class Auth {
 
+    private String messages;
     ListCompany listCompany;
     Company company;
 
@@ -31,18 +32,32 @@ public class Auth {
         company = new Company();
     }
 
-    public boolean isLogin(User user) throws SQLException {
+    public boolean isLogin(User user) {
         boolean isLogin = false;
-        if (user.getRole().equals("admin-empresa")) {
-            company = listCompany.getUserCompany(user);
-            if (company.getId()> 0) {
-                isLogin = true;
+
+        try {
+            if (user.getRole().equals("admin-empresa")) {
+                company = listCompany.getUserCompany(user);
+                if (company.getId() > 0) {
+                    isLogin = true;
+                    return isLogin;
+                }
+                throw new SQLException("No se encontro al usuario de tipo "+user.getRole());
             }
+        } catch (SQLException ex) {
+            this.messages = ex.getMessage();
+            Logger.getLogger(Auth.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return isLogin;
     }
 
     public Company getCompany() {
         return this.company;
     }
+
+    public String getMessages() {
+        return this.messages;
+    }
+
 }

@@ -30,26 +30,22 @@
             <div class="row">
                 <div class="col-lg-4 mb-4">
                     <div class="card h-100">
-                        <h4 class="card-header">Card Title</h4>
+                        <h4 class="card-header">Alquiler de Cochera en San Isidro</h4>
                         <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                                necessitatibus neque.</p>
+                            <p class="card-text">Es una cochera en un primer zotano  lugar bien ubicado  ....</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Learn More</a>
+                            <a href="#" class="btn btn-primary">Ver Detalle</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <div class="card h-100">
-                        <h4 class="card-header">Card Title</h4>
+                        <h4 class="card-header">Alquiler de Cochera en Jesus Maria</h4>
                         <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam
-                                eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque
-                                exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-                        </div>
+                            <p class="card-text">Cochera estacionamiento - puerta automatica - camaras vigilancia 24h alquiler cochera o estacionamiento, con puerta automática ....</div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Learn More</a>
+                            <a href="#" class="btn btn-primary">Ver Detalle</a>
                         </div>
                     </div>
                 </div>
