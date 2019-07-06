@@ -41,5 +41,7 @@
         <!-- Bootstrap core JavaScript -->
         <%@include file="layouts/js.jsp" %>
         <%@include file="layouts/footer.jsp" %>
+        <%@include file="layouts/login.company.jsp" %>
+
     </body>
 </html>
