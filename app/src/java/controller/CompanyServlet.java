@@ -35,7 +35,11 @@ import model.Auth;
             "/empresa",
             "/empresa/registrar",
             "/empresa/create-acount",
-            "/empresa/dasword"
+            "/empresa/dashboard",
+            "/empresa/mi-cuenta",
+            "/empresa/publicar",
+            "/empresa/update-acount"
+
         }
 )
 public class CompanyServlet extends HttpServlet {
@@ -54,17 +58,16 @@ public class CompanyServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         String url = request.getServletPath();
         request.setAttribute("href-empresa", "/empresa/registrar");
-        request.setAttribute("href-my-account", "/empresa/mi-cuenta");
+        request.setAttribute("href-my-account", "/empresa/dashboard");
         HttpSession sessionCompany;
         sessionCompany = (HttpSession) request.getSession();
-
+        Company company = (Company) sessionCompany.getAttribute("company_session");
+        request.setAttribute("company_session", company);
         switch (url) {
             case "/empresa/create-acount":
                 this.createAccount(request, response);
                 break;
-            case "/empresa/dasword":
-                Company company = (Company) sessionCompany.getAttribute("company_session");
-                request.setAttribute("company_session", company);
+            case "/empresa/dashboard":
                 if (company != null) {
                     this.dasword(request, response);
                 }
@@ -75,17 +78,15 @@ public class CompanyServlet extends HttpServlet {
             case "/empresa":
                 this.home(request, response);
                 break;
+            case "/empresa/mi-cuenta":
+                this.myAccount(request, response);
+                break;
+            case "/empresa/update-acount":
+                this.updateAccount(request, response);
+                break;
         }
-
-        try {
-            response.sendRedirect("/empresa");
-        } catch (IOException ex) {
-            Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
-    @SuppressWarnings("empty-statement")
     protected void createAccount(HttpServletRequest request, HttpServletResponse response) {
         try {
             ModelCompany modelCompany = new ModelCompany();
@@ -126,8 +127,58 @@ public class CompanyServlet extends HttpServlet {
             sessionCompany = request.getSession(true);
             sessionCompany.setAttribute("company_session", company);
 
-            response.sendRedirect("/empresa/dasword");
+            request.getRequestDispatcher("/empresa/dashboard").forward(request, response);
+
         } catch (IOException ex) {
+            Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ServletException ex) {
+            Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    protected void updateAccount(HttpServletRequest request, HttpServletResponse response) {
+        ModelCompany modelCompany = new ModelCompany();
+        ModelUser userModel = new ModelUser();
+        DateTime date = new DateTime();
+        String name = request.getParameter("nombre");
+        String lastName = request.getParameter("apellido");
+        String mail = request.getParameter("email");
+        String password = request.getParameter("password");
+        String businessName = request.getParameter("razon_social");
+        String tradename = request.getParameter("nombre_comercial");
+        String ruc = request.getParameter("ruc");
+        String mobile = request.getParameter("celular");
+        String address = request.getParameter("direccion");
+        Company company = new Company();
+        User user = new User();
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setMail(mail);
+        user.setRole("admin-empresa");
+        user.creationDate();
+        user.setPassword(password);
+        company.setBusinessName(businessName);
+        company.setTradename(tradename);
+        company.setRuc(ruc);
+        company.setMobile(mobile);
+        company.setAddress(address);
+        company.creationDate();
+        company.setUser(user);
+        modelCompany.update(company);
+    }
+
+    /**
+     *
+     * @param request
+     * @param response
+     */
+    protected void myAccount(HttpServletRequest request, HttpServletResponse response) {
+        try {
+
+            dispatcher = request.getRequestDispatcher("/view/my-account-company.jsp");
+            dispatcher.forward(request, response);
+
+        } catch (ServletException | IOException ex) {
             Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -136,7 +187,7 @@ public class CompanyServlet extends HttpServlet {
 
         try {
 
-            dispatcher = request.getRequestDispatcher("/view/company-dasword.jsp");
+            dispatcher = request.getRequestDispatcher("/view/company-dashboard.jsp");
             dispatcher.forward(request, response);
 
         } catch (ServletException | IOException ex) {
@@ -158,8 +209,9 @@ public class CompanyServlet extends HttpServlet {
 
     protected void home(HttpServletRequest request, HttpServletResponse response) {
 
-        dispatcher = request.getRequestDispatcher("/view/company.jsp");
+        
         try {
+            dispatcher = request.getRequestDispatcher("/view/company.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);

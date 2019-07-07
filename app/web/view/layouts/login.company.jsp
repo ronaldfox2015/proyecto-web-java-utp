@@ -47,7 +47,7 @@
                 },
                 success: function (data, status) {
                     if (data.response.status) {
-                        window.location.href = "/empresa/dasword";
+                        window.location.href = "/empresa/dashboard";
                     }
 
                 },

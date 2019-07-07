@@ -29,5 +29,13 @@ public class ModelCompany {
         modelCreateCompany.save(company);
 
     }
+    
+    /**
+     *
+     * @param company
+     */
+    public void update(Company company){
+    
+    }
 
 }

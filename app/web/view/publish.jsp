@@ -19,13 +19,23 @@
         <!-- navigation-->
         <%@include file="layouts/navigation.jsp" %>
         <!-- Navigation -->
-        <!-- slider -->
-        <%@include file="layouts/slider-company.jsp" %>
+        <!-- conteiner -->
+        <div class="container" style="margin-top: 100px;">
+            <!-- Page Heading/Breadcrumbs -->
+            <h3 class="mt-4 mb-3 text-center">GESTIÓN DE PUBLICAR
+                <small></small>
+            </h3>
+            <!-- Content Row -->
+            <div class="row">
+                <!-- Sidebar Column -->
+                
+            </div>
+            <!-- /.row -->
+        </div>
+        <%@include file="layouts/footer.jsp" %>
         <!-- container -->
         <!-- Bootstrap core JavaScript -->
         <%@include file="layouts/js.jsp" %>
-        <%@include file="layouts/footer.jsp" %>
-        <%@include file="layouts/login.company.jsp" %>
 
     </body>
 </html>

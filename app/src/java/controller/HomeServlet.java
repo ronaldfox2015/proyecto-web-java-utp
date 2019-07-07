@@ -41,7 +41,7 @@ public class HomeServlet extends HttpServlet {
         sessionCompany = (HttpSession) request.getSession();
         Company company = (Company) sessionCompany.getAttribute("company_session");
         request.setAttribute("company_session", company);
-
+        request.setAttribute("href-my-account", "/empresa/dashboard");
         RequestDispatcher dispatcher;
         request.setAttribute("href-empresa", "/registrar");
 
