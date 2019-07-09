@@ -37,6 +37,8 @@
                         <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-empresa")%>">Registrate</a>
                         <%} else {%>
                         <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-my-account")%>">Mi cuenta</a>
+                                                <a class="dropdown-item text-warning" href="/auth/logout">Salir</a>
+
                         <%}%>
                     </div>
                 </li>

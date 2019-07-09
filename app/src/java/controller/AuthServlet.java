@@ -28,7 +28,7 @@ import library.Json;
  *
  * @author ronald
  */
-@WebServlet(name = "AuthServlet", urlPatterns = {"/auth/login"})
+@WebServlet(name = "AuthServlet", urlPatterns = {"/auth/login","/auth/logout"})
 public class AuthServlet extends HttpServlet {
 
     Auth auth;

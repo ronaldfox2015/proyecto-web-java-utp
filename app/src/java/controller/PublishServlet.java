@@ -5,6 +5,7 @@
  */
 package controller;
 
+import entity.Company;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,7 +37,12 @@ public class PublishServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
         try {
-
+       request.setAttribute("href-empresa", "/empresa/registrar");
+        request.setAttribute("href-my-account", "/empresa/dashboard");
+        HttpSession sessionCompany;
+        sessionCompany = (HttpSession) request.getSession();
+        Company company = (Company) sessionCompany.getAttribute("company_session");
+        request.setAttribute("company_session", company);
             dispatcher = request.getRequestDispatcher(
                     "/view/publish.jsp");
 
