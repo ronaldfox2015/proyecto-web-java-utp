@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class ListCompany {
 
-   AdapterOrm mysql;
+    AdapterOrm mysql;
 
     public ListCompany() {
         this.mysql = new AdapterOrm();

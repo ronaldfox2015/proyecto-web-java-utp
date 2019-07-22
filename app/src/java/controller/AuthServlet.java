@@ -20,6 +20,7 @@ import model.Auth;
 import com.google.gson.JsonObject;
 import entity.Company;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import library.DtoResponse;
 import library.Json;
@@ -28,7 +29,7 @@ import library.Json;
  *
  * @author ronald
  */
-@WebServlet(name = "AuthServlet", urlPatterns = {"/auth/login","/auth/logout"})
+@WebServlet(name = "AuthServlet", urlPatterns = {"/auth/login", "/auth/logout"})
 public class AuthServlet extends HttpServlet {
 
     Auth auth;
@@ -55,6 +56,9 @@ public class AuthServlet extends HttpServlet {
         switch (url) {
             case "/auth/login":
                 this.login(request, response);
+                break;
+            case "/auth/logout":
+                this.logout(request, response);
                 break;
 
         }
@@ -90,7 +94,6 @@ public class AuthServlet extends HttpServlet {
                 dtoSession.setStatus(true);
                 dtoSession.setData(list);
             }
-            
 
         } catch (IOException ex) {
             dtoSession.setMessages(ex.getMessage());
@@ -99,6 +102,31 @@ public class AuthServlet extends HttpServlet {
 
         String responseJson = this.json.convert(dtoSession);
         out.println(responseJson);
+    }
+
+    protected void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        PrintWriter out = null;
+        try {
+            //  response.setContentType("application/json");
+            HttpSession sessionCompany;
+            sessionCompany = request.getSession(true);
+            sessionCompany = (HttpSession) request.getSession();
+            Company company = (Company) sessionCompany.getAttribute("company_session");
+            if (company != null) {
+                sessionCompany.invalidate();
+                /*  RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/empresa");
+
+                 dispatcher.forward(request, response);*/
+                response.sendRedirect("/empresa");
+
+            }
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/home");
+
+            dispatcher.forward(request, response);;
+
+        } catch (ServletException ex) {
+            Logger.getLogger(AuthServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

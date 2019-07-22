@@ -12,9 +12,9 @@ import entity.Company;
  * @author ronald
  */
 public class ModelCreateCompany {
-    
+
     public void save(Company company) {
-        AdapterOrm mysql;   
+        AdapterOrm mysql;
         mysql = new AdapterOrm();
         String sql = "INSERT INTO `tbempresa`("
                 + "`id`,"
@@ -29,18 +29,18 @@ public class ModelCreateCompany {
                 + "`logo`,"
                 + "`estado`) VALUES ("
                 + " NULL,"
-                + company.getUser().getId()+","
-                + "'"+ company.getBusinessName() +"'" +","
-                + "'"+ company.getCreationDate()+"'" +","
-                + "'"+ company.getUpdateDate()+"'" +","
-                + "'"+ company.getRuc()+"'" +","
-                + "'"+ company.getMobile()+"'" +","
-                + "'"+ company.getTradename()+"'" +","
-                + "'"+ company.getAddress()+"'" +","
-                + "'"+ company.getLogo()+"'" +","
-                + "'"+ company.getStatus()+"'"
+                + company.getUser().getId() + ","
+                + "'" + company.getBusinessName() + "'" + ","
+                + "'" + company.getCreationDate() + "'" + ","
+                + "'" + company.getUpdateDate() + "'" + ","
+                + "'" + company.getRuc() + "'" + ","
+                + "'" + company.getMobile() + "'" + ","
+                + "'" + company.getTradename() + "'" + ","
+                + "'" + company.getAddress() + "'" + ","
+                + "'" + company.getLogo() + "'" + ","
+                + "'" + company.getStatus() + "'"
                 + "); ";
-       mysql.insert(sql);
-       company.setId(mysql.getId());
+        mysql.insert(sql);
+        company.setId(mysql.getId());
     }
 }

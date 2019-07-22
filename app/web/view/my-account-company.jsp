@@ -33,6 +33,7 @@
                         <a href="/empresa/dashboard" class="list-group-item">dashboard</a>
                         <a href="/empresa/mi-cuenta" class="list-group-item active">Mi cuenta</a>
                         <a href="/publicar" class="list-group-item">Publicar</a>
+                        <a href="/publicar/listar-activo" class="list-group-item">Procesos</a>
                     </div>
                 </div>
                 <!-- Content Column -->

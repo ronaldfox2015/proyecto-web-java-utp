@@ -3,7 +3,12 @@
     Created on : 20/06/2019, 10:36:30 PM
     Author     : ronald
 --%>
+<%@page import="java.util.Iterator"%>
+<%@page import="entity.Location"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% ArrayList<Location> listLocation = (ArrayList<Location>) request.getAttribute("listLocation");%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,83 +30,72 @@
             <h3 class="mt-4 mb-3 text-center">GESTIÓN DE PUBLICAR
                 <small></small>
             </h3>
-            <form action="/empresa/update-acount"  method="post" class="needs-validation"  novalidate>
+            <form action="/publicar/create" enctype="MULTIPART/FORM-DATA"  method="post" class="needs-validation"  novalidate>
+                <div class="form-row">
+                    <div class="col-md-12 mb-2">
+                        <label for="Correo">Titulo de anuncio</label>
+                        <input type="text" class="form-control" id="email"  name="title" placeholder="Titulo Anuncio" required>
+                        <div class="invalid-feedback">
+                            Por favor proporcione un titulo de anuncio valido.
+                        </div>
+                    </div>
+                </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-2">
-                        <label for="validationCustom01">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="" required>
+                        <label for="validationCustom01">Distrito</label>
+                        <select name="district" id="district" class="custom-select" required>
+                            <option value="">Seleccionar</option>
+                            <%  for (int i = 0; i < listLocation.size(); i++) {%>
+                            <option value="<%= listLocation.get(i).getId()%>"><%= listLocation.get(i).getName()%></option>
+                            <% }%>
+                        </select>                     
                         <div class="invalid-feedback">
-                            Por favor proporcione un Nombre válido.
+                            Por favor seleccione el distrito.
                         </div>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <label for="validationCustom02">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" value="" required>
+                        <label for="validationCustom02">Dirección</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Dirección" value="" required>
                         <div class="invalid-feedback">
-                            Por favor proporcione un Apellido válido.
+                            Por favor proporcione una direccion validad.
                         </div>
                     </div>
-                </div>
+                </div><!--
                 <div class="form-row">
-                    <div class="col-md-12 mb-2">
-                        <label for="Correo">Correo</label>
-                        <input type="email" class="form-control" id="email"  name="email" placeholder="Email" required>
-                        <div class="invalid-feedback">
-                            Por favor proporcione un Correo válido.
-                        </div>
+                    <label for="validationCustom02">Subir imagen</label>
+
+                    <div class="custom-file">
+                        <input type="file" name="banner" class="custom-file-input" id="customFileLangHTML">
+                        <label class="custom-file-label" for="customFileLangHTML" data-browse="Elegir">Subir</label>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-row">
                     <div class="col-md-12 mb-2">
-                        <label for="Contraseña">Contraseña</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
+                        <label for="RazonSocial">N° de vehiculos</label>
+                        <input type="number" class="form-control" id="n_garage" name="n_garage" placeholder="N° de vehiculos" required>
                         <div class="invalid-feedback">
-                            Por favor proporcione una Contraseña válida.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-12 mb-2">
-                        <label for="RazonSocial">Razon Social</label>
-                        <input type="text" class="form-control" id="razon_social" name="razon_social" placeholder="Razon Social" required>
-                        <div class="invalid-feedback">
-                            Por favor proporcione una Razon Social válida.
+                            Por favor proporcione el numero de vehiculo válida.
 
                         </div>
                     </div>                                    
                 </div>
                 <div class="form-row">
                     <div class="col-md-12 mb-2">
-                        <label for="NombreComercial">Nombre Comercial</label>
-                        <input type="text" class="form-control" id="nombre_comercial" name="nombre_comercial"  placeholder="Nombre Comercial" required>
+                        <label for="RazonSocial">Precio</label>
+                        <input type="number" class="form-control" id="price" name="price" placeholder="Precio" required>
                         <div class="invalid-feedback">
-                            Por favor proporcione un Nombre Comercial válido.
+                            Por favor proporcione un precio válida.
+
                         </div>
                     </div>                                    
                 </div>
                 <div class="form-row">
-                    <div class="col-md-6 mb-2">
-                        <label for="Ruc">Ruc</label>
-                        <input type="text" class="form-control" id="ruc" name="ruc" placeholder="Ruc" required>
-                        <div class="invalid-feedback">
-                            Por favor proporcione un Ruc válido.
-
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-2">
-                        <label for="Cell">N° Celular</label>
-                        <input type="number" class="form-control" id="celular" name="celular" placeholder="N° Celular" required>
-                        <div class="invalid-feedback">
-                            Please provide a valid zip.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
                     <div class="col-md-12 mb-2">
-                        <label for="Direccion">Dirección</label>
-                        <textarea class="form-control" id="direccion" name="direccion" placeholder="Dirección" required></textarea>
+                        <label for="RazonSocial">descuento</label>
+                        <input type="number" class="form-control" id="discont" name="discont" placeholder="Descuento" required>
                         <div class="invalid-feedback">
-                            Please provide a valid state.
+                            Por favor proporcione descuento valido
+
                         </div>
                     </div>                                    
                 </div>
@@ -128,6 +122,27 @@
         <!-- container -->
         <!-- Bootstrap core JavaScript -->
         <%@include file="layouts/js.jsp" %>
+        <script>
 
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
     </body>
 </html>

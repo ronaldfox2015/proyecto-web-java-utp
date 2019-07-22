@@ -28,7 +28,7 @@ public class AdapterOrm {
      *
      */
     public AdapterOrm() {
-        this.mysqlOrm = new MysqlORM("192.168.1.60:3306", "root", "1234", "dbhparking");
+        this.mysqlOrm = new MysqlORM("192.168.1.2:3306", "root", "1234", "dbhparking");
     }
 
     /**

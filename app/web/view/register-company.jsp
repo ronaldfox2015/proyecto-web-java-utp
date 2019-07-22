@@ -144,6 +144,7 @@
         <!-- container -->
         <!-- Bootstrap core JavaScript -->
         <%@include file="layouts/js.jsp" %>
+        <%@include file="layouts/login.company.jsp" %>
         <script>
             // Example starter JavaScript for disabling form submissions if there are invalid fields
             (function () {
