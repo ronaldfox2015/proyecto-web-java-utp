@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ListGarage;
 import model.ListLocation;
 import model.ParkingAnnouncement;
 
@@ -29,7 +30,8 @@ import model.ParkingAnnouncement;
  *
  * @author ronald
  */
-@WebServlet(name = "publish", urlPatterns = {"/publicar", "/publicar/create", "/publicar/listar-activo"})
+@WebServlet(name = "publish", urlPatterns = {"/publicar", "/publicar/create", "/publicar/listar-activo",
+    "/publicar/edit/2"})
 @MultipartConfig
 public class PublishServlet extends HttpServlet {
 
@@ -63,6 +65,8 @@ public class PublishServlet extends HttpServlet {
                     break;
                 case "/publicar/listar-activo":
                     this.listarActivos(request, response);
+                case "/publicar/edit/2":
+                    this.editar(request, response);
 
                     break;
             }
@@ -123,11 +127,25 @@ public class PublishServlet extends HttpServlet {
 
     }
 
-    protected void listarActivos(HttpServletRequest request, HttpServletResponse response) {
+    protected void listarActivos(HttpServletRequest request, HttpServletResponse response)  {
         try {
+            ListGarage list=new ListGarage();
+            request.setAttribute("listGarage", list.getByIdEmpresa(company.getId()));
             RequestDispatcher disp = request.getRequestDispatcher("/view/list-active.jsp");
 
             disp.forward(request, response);
+        } catch (ServletException | IOException | SQLException ex) {
+            Logger.getLogger(PublishServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+        protected void editar(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+               ListLocation listLocation = new ListLocation();
+            request.setAttribute("listLocation", listLocation.get());
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/view/publish-editar.jsp");
+            dispatcher.forward(request, response);
         } catch (ServletException | IOException ex) {
             Logger.getLogger(PublishServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

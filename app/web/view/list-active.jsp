@@ -3,7 +3,10 @@
     Created on : 20/06/2019, 10:36:30 PM
     Author     : ronald
 --%>
+<%@page import="entity.Garage"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% ArrayList<Garage> listGarage = (ArrayList<Garage>) request.getAttribute("listGarage");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -38,7 +41,28 @@
                 </div>
                 <!-- Content Column -->
                 <div class="col-lg-9 mb-4">
-                    listado
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Título</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%  for (int i = 0; i < listGarage.size(); i++) {%>
+                            <tr>
+                                <th scope="row"><%= listGarage.get(i).getId()%></th>
+                                <td><%= listGarage.get(i).getName()%></td>
+                                <td><%= listGarage.get(i).getLocation().getName()%>-<%= listGarage.get(i).getAddress()%></td>
+                                <td><%= listGarage.get(i).getStatusName()%></td>
+                                <td><a href="/publicar/edit/<%= listGarage.get(i).getId()%>">Editar</a></td>
+                            </tr>
+                            <% }%>
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- /.row -->

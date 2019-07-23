@@ -99,7 +99,13 @@ public class Garage {
     public int getStatus() {
         return status;
     }
-
+    public String getStatusName(){
+        if (status==1) {
+            return "Activo";
+        }else{
+            return "Inactivo";
+        }
+    }
     public void setStatus(int status) {
         this.status = status;
     }

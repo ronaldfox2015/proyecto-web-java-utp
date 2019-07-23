@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/FileUpload.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/CreateParkingGarage.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/entity/Garage.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/entity/Location.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/CreateGarege.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/entity/ParkingGarage.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelUser.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelCreateCompany.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ModelCompany.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/controller/PublishServlet.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/parkingAnnouncement.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/entity/Company.java</file>
-            <file>file:/home/ronald/Sistemas/proyecto-web-java-utp/app/src/java/model/ListCompany.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

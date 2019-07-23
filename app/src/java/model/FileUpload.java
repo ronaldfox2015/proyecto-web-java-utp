@@ -5,17 +5,8 @@
  */
 package model;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
-import java.io.File;
-import static java.lang.System.out;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.FileItemFactory;
-import org.apache.tomcat.util.http.fileupload.RequestContext;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import javax.servlet.http.HttpServletRequest;
 
 /**
