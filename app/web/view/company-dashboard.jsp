@@ -34,7 +34,7 @@
                         <a href="/empresa/mi-cuenta" class="list-group-item">Mi cuenta</a>
                         <a href="/publicar" class="list-group-item">Publicar</a>
                         <a href="/publicar/listar-activo" class="list-group-item">Procesos</a>
-                    </div>
+                        </div>
                 </div>
                 <!-- Content Column -->
                 <div class="col-lg-9 mb-4">
