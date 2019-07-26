@@ -8,10 +8,12 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="shortcut icon" href="http://lineadecodigo.com/wp-content/uploads/2007/03/favicon.ico">
+
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Modern Business - Start Bootstrap Template</title>
+        <title>Portal de empresa</title>
         <!-- Bootstrap core CSS -->
         <%@include file="layouts/css.jsp" %>
     </head>
@@ -20,7 +22,30 @@
         <%@include file="layouts/navigation.jsp" %>
         <!-- Navigation -->
         <!-- slider -->
-        <%@include file="layouts/slider-company.jsp" %>
+        <!-- Navigation -->
+        <!-- conteiner -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <!-- Page Heading/Breadcrumbs -->
+            <h3 class="mt-4 mb-3 text-center">Portal del Empresa
+                <small></small>
+            </h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Bienvenido - Cliente Empresa</h5>
+                            <img src="static/img/EmpresaBanner.jpg" class="img-fluid" alt="Responsive image">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- container -->
         <!-- Bootstrap core JavaScript -->
         <%@include file="layouts/js.jsp" %>

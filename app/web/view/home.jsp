@@ -8,6 +8,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <link rel="shortcut icon" href="http://lineadecodigo.com/wp-content/uploads/2007/03/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -23,16 +24,16 @@
         <%@include file="layouts/slider.jsp" %>
         <!-- Page Content -->
         <div class="container">
-
-            <h1 class="my-4">Cocheras mas destacadas</h1>
-
+            <br>
+            <h2 class="block-title">Cocheras mas destacadas</h2>
+            <br>
             <!-- Marketing Icons Section -->
             <div class="row">
                 <div class="col-lg-4 mb-4">
                     <div class="card h-100">
                         <h4 class="card-header">Alquiler de Cochera en San Isidro</h4>
                         <div class="card-body">
-                            <p class="card-text">Es una cochera en un primer zotano  lugar bien ubicado  ....</p>
+                            <p class="card-text">Estacionamiento techado, amplio, ventilado e iluminado, de acceso directo hacía avenida principal, cómodo ingreso con puerta a control remoto. </p>
                         </div>
                         <div class="card-footer">
                             <a href="#" class="btn btn-primary">Ver Detalle</a>
@@ -44,6 +45,7 @@
                         <h4 class="card-header">Alquiler de Cochera en Jesus Maria</h4>
                         <div class="card-body">
                             <p class="card-text">Cochera estacionamiento - puerta automatica - camaras vigilancia 24h alquiler cochera o estacionamiento, con puerta automática ....</div>
+
                         <div class="card-footer">
                             <a href="#" class="btn btn-primary">Ver Detalle</a>
                         </div>
@@ -51,137 +53,102 @@
                 </div>
                 <div class="col-lg-4 mb-4">
                     <div class="card h-100">
-                        <h4 class="card-header">Card Title</h4>
+                        <h4 class="card-header">Alquiler de Cochera en Miraflores</h4>
                         <div class="card-body">
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                                necessitatibus neque.</p>
+                            <p class="card-text">Estoy alquilando cochera en Miraflores, amplia , centrica , segura y de muy fácil acceso.</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Learn More</a>
+                            <a href="#" class="btn btn-primary">Ver Detalle</a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- /.row -->
-
+            <br><br><br>
             <!-- Portfolio Section -->
-            <h2>Portfolio Heading</h2>
-
+            <h1 class="block-title">Los mejores precios 
+            </h1>
+            <br>
             <div class="row">
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <a href="#"><img class="card-img-top" src="/../static/img/cochera1.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Project One</a>
+                                <a href="#">Miraflores</a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam
-                                aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt,
-                                dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                            <p class="card-text">
+                                Playa de Estacionamiento Porta<br>
+                                Calle San Martin 173 - Precio: S/. 7.00 x Hora
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <a href="#"><img class="card-img-top" src="/../static/img/cochera2.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Project Two</a>
+                                <a href="#">San Isidro</a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
-                                euismod odio, gravida pellentesque urna varius vitae.</p>
+                            <p class="card-text">Estacionamiento Cáceres<br>
+                                Debajo de la Plaza Cáceres y del Parque Andrés Reyes, Calle El Parque 150-Precio: S/. 9.00 x Hora
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <a href="#"><img class="card-img-top" src="/../static/img/cochera3.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Project Three</a>
+                                <a href="#">Lince</a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam,
-                                error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere
-                                atque iure perspiciatis mollitia recusandae vero vel quam!</p>
+                            <p class="card-text">Estacionamiento Playa El Encuentro<br>
+                                Jr. Manuel Segura 391-Precio: S/.5.00 x Hora
+
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <a href="#"><img class="card-img-top" src="/../static/img/cochera4.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Project Four</a>
+                                <a href="#">Magdalena</a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
-                                euismod odio, gravida pellentesque urna varius vitae.</p>
+                            <p class="card-text">Estacionamiento 24 horas<br>
+                                Jr. José Valencia 112B-Precio: S/.7.00 x Hora</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <a href="#"><img class="card-img-top" src="/../static/img/cochera5.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Project Five</a>
+                                <a href="#">Breña</a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra
-                                euismod odio, gravida pellentesque urna varius vitae.</p>
+                            <p class="card-text">Playa De Estacionamiento Aries<br>
+                                Jr. Gregorio Paredes 179-Precio: S/.7.00 x Hora</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                        <a href="#"><img class="card-img-top" src="/../static/img/cochera6.jpg" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Project Six</a>
+                                <a href="#">Surquillo</a>
                             </h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum
-                                nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in
-                                voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
+                            <p class="card-text">Playa De Estacionamiento Dasa<br>
+                                Calle Los Negocios 303-Precio: S/.4.00 x Hora</p>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- /.row -->
-
-            <!-- Features Section -->
-            <div class="row">
-                <div class="col-lg-6">
-                    <h2>Modern Business Features</h2>
-                    <p>The Modern Business template by Start Bootstrap includes:</p>
-                    <ul>
-                        <li>
-                            <strong>Bootstrap v4</strong>
-                        </li>
-                        <li>jQuery</li>
-                        <li>Font Awesome</li>
-                        <li>Working contact form with validation</li>
-                        <li>Unstyled page elements for easy customization</li>
-                    </ul>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id
-                        reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia
-                        dolorum ducimus unde.</p>
-                </div>
-                <div class="col-lg-6">
-                    <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-                </div>
-            </div>
-            <!-- /.row -->
-
-            <hr>
-
-            <!-- Call to Action Section -->
-            <div class="row mb-4">
-                <div class="col-md-8">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum
-                        deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
-                </div>
-            </div>
 
         </div>
         <!-- /.container -->

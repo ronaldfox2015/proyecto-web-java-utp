@@ -43,7 +43,7 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("company_session", company);
         request.setAttribute("href-my-account", "/empresa/dashboard");
         RequestDispatcher dispatcher;
-        request.setAttribute("href-empresa", "/registrar");
+        request.setAttribute("href-empresa", "/cliente");
 
         dispatcher = request.getRequestDispatcher(
                 "/view/home.jsp");

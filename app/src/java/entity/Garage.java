@@ -17,6 +17,8 @@ public class Garage {
     static final int STATUS_INACTIVATE = 0;
     private int id;
     private Company company;
+    private ParkingGarage parkingGarage;
+
     private Location location;
     private String name;
     private String creationDate;
@@ -29,6 +31,14 @@ public class Garage {
         DateTime date = new DateTime();
         this.updateDate = date.format("yyyy-MM-dd HH:mm:ss");
         this.status = User.STATUS_ACTIVATE;
+    }
+
+    public ParkingGarage getParkingGarage() {
+        return parkingGarage;
+    }
+
+    public void setParkingGarage(ParkingGarage parkingGarage) {
+        this.parkingGarage = parkingGarage;
     }
 
     public int getId() {

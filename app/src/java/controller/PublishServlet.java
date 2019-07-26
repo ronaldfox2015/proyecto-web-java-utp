@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.ListLocation;
+import model.ListGarage;
 import model.ParkingAnnouncement;
-
 /**
  *
  * @author ronald
@@ -63,7 +63,7 @@ public class PublishServlet extends HttpServlet {
                     break;
                 case "/publicar/listar-activo":
                     this.listarActivos(request, response);
-
+                case "/publicar/edit/2":
                     break;
             }
             RequestDispatcher disp = request.getRequestDispatcher("/view/publish.jsp");
@@ -123,12 +123,14 @@ public class PublishServlet extends HttpServlet {
 
     }
 
-    protected void listarActivos(HttpServletRequest request, HttpServletResponse response) {
+    protected void listarActivos(HttpServletRequest request, HttpServletResponse response)  {
         try {
+            ListGarage list=new ListGarage();
+            request.setAttribute("listGarage", list.getByIdEmpresa(company.getId()));
             RequestDispatcher disp = request.getRequestDispatcher("/view/list-active.jsp");
 
             disp.forward(request, response);
-        } catch (ServletException | IOException ex) {
+        } catch (ServletException | IOException | SQLException ex) {
             Logger.getLogger(PublishServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

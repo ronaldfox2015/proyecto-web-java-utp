@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.ListDistrito;
 import model.ListLocation;
+import model.ListSearchGarage;
 
 /**
  *
@@ -26,6 +28,7 @@ import model.ListLocation;
  */
 @WebServlet(name = "SearchServlet", urlPatterns = {"/buscar"})
 public class SearchServlet extends HttpServlet {
+
     private Company company;
 
     /**
@@ -39,7 +42,7 @@ public class SearchServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         try {
+        try {
             response.setContentType("text/html;charset=UTF-8");
             request.setAttribute("href-empresa", "/empresa/registrar");
             request.setAttribute("href-my-account", "/empresa/dashboard");
@@ -68,10 +71,25 @@ public class SearchServlet extends HttpServlet {
     protected void index(HttpServletRequest request, HttpServletResponse response) {
 
         try {
+            ListSearchGarage listSearchGarage = new ListSearchGarage();
+            request.setAttribute("listGarage", listSearchGarage.get());
+            listarDistritos(request, response);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/search.jsp");
             dispatcher.forward(request, response);
         } catch (ServletException | IOException ex) {
+            Logger.getLogger(PublishServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    protected void listarDistritos(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            ListDistrito list = new ListDistrito();
+            request.setAttribute("listDistrito", list.get());
+
+        } catch (SQLException ex) {
             Logger.getLogger(PublishServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

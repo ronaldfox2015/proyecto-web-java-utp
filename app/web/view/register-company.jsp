@@ -29,7 +29,9 @@
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body">
-                            <img src="../static/img/SorteoPApaLanding-Desktop.jpg" class="img-fluid" alt="Responsive image"/>
+                            <h5 class="card-title">Bienvenido - Cliente Empresa</h5>
+                            <img src="/static/img/oferta.jpg" class="img-fluid" alt="Responsive image"/>
+
                         </div>
                     </div>
                 </div>

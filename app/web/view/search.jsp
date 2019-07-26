@@ -3,11 +3,18 @@
     Created on : 20/06/2019, 10:36:30 PM
     Author     : ronald
 --%>
+<%@page import="entity.Garage"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language='java' contentType='text/html;charset=iso-8859-1'%>
+<% ArrayList<Garage> listGarage = (ArrayList<Garage>) request.getAttribute("listGarage");%>
+<% ArrayList<Garage> listDistrito = (ArrayList<Garage>) request.getAttribute("listDistrito");%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
+                <link rel="shortcut icon" href="http://lineadecodigo.com/wp-content/uploads/2007/03/favicon.ico">
+
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -50,18 +57,14 @@
                         <div class="card">
                             <ul class="list-group">
                                 <li class="list-group-item d-flex justify-content-between align-items-center active">
-                                    
                                     Distritos
                                     <span class="badge badge-primary badge-pill">14</span>
                                 </li>
+                                <%  for (int i = 0; i < listDistrito.size(); i++) {%>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Dapibus ac facilisis in
-                                    <span class="badge badge-primary badge-pill">2</span>
+                                <td><%= listDistrito.get(i).getLocation().getName()%></td>
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Morbi leo risus
-                                    <span class="badge badge-primary badge-pill">1</span>
-                                </li>
+                                <% }%>
                             </ul>
                         </div>
                     </div>
@@ -71,30 +74,17 @@
                             <div class="card-body">
                                 <div class="tab-content" id="myTabContent">
                                     <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action active">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h5 class="mb-1">List group item heading</h5>
-                                                <small>3 days ago</small>
-                                            </div>
-                                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                            <small>Donec id elit non mi porta.</small>
-                                        </a>
+                                        <%  for (int i = 0; i < listGarage.size(); i++) {%>
                                         <a href="#" class="list-group-item list-group-item-action">
                                             <div class="d-flex w-100 justify-content-between">
-                                                <h5 class="mb-1">List group item heading</h5>
-                                                <small class="text-muted">3 days ago</small>
+                                                <h5 class="mb-1"><%= listGarage.get(i).getName()%></h5>
+                                                <small>hace <%= listGarage.get(i).getUpdateDate()%> dias</small>
                                             </div>
-                                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                            <small class="text-muted">Donec id elit non mi porta.</small>
+                                            <p class="mb-1"><%= listGarage.get(i).getLocation().getName()%> - av. general garzon </p>
+                                            <small>precio <%= listGarage.get(i).getParkingGarage().getPrice()%> soles por hora</small>
                                         </a>
-                                        <a href="#" class="list-group-item list-group-item-action">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h5 class="mb-1">List group item heading</h5>
-                                                <small class="text-muted">3 days ago</small>
-                                            </div>
-                                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                            <small class="text-muted">Donec id elit non mi porta.</small>
-                                        </a>
+                                        <% }%>
+
                                     </div>
                                 </div>
 

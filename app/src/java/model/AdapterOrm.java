@@ -22,7 +22,6 @@ public class AdapterOrm {
 
     private final MysqlORM mysqlOrm;
     private int id;
-    
 
     /**
      *
@@ -52,13 +51,17 @@ public class AdapterOrm {
     public ResultSet list(String sql) throws SQLException {
         ResultSet response = null;
         if (this.mysqlOrm.conectar()) {
-            response = this.mysqlOrm.list(sql);   
-            
+            response = this.mysqlOrm.list(sql);
+
         }
         return response;
     }
 
     public MysqlORM mysqlOrm() {
         return this.mysqlOrm;
+    }
+
+    public void close() {
+        this.mysqlOrm.desconectar();
     }
 }
