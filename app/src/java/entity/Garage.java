@@ -35,6 +35,9 @@ public class Garage {
     }
 
     public int getDay() {
+        if(this.day ==0){
+            return 1;
+        }
         return day;
     }
 
@@ -121,5 +124,13 @@ public class Garage {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+    
+    public String getStatusName()
+    {
+        if(this.status==1){
+            return "activo";
+        }
+        return "inativo";
     }
 }

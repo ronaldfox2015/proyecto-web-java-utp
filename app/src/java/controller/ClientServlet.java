@@ -80,7 +80,7 @@ public class ClientServlet extends HttpServlet {
             sessionCliente = request.getSession(true);
             sessionCliente.setAttribute("cliente_session", cliente);
 
-            request.getRequestDispatcher("/cliente/dashboard").forward(request, response);
+            request.getRequestDispatcher("/buscar").forward(request, response);
 
         } catch (ServletException ex) {
             Logger.getLogger(CompanyServlet.class.getName()).log(Level.SEVERE, null, ex);

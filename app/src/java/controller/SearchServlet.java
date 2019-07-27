@@ -48,7 +48,7 @@ public class SearchServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
         response.setContentType("text/html;charset=UTF-8");
-        request.setAttribute("href-empresa", "/empresa/registrar");
+        request.setAttribute("href-empresa", "/cliente");
         
         HttpSession sessionCompany;
         sessionCompany = (HttpSession) request.getSession();
