@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Auth;
 import com.google.gson.JsonObject;
+import entity.Cliente;
 import entity.Company;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
@@ -34,6 +35,7 @@ public class AuthServlet extends HttpServlet {
 
     Auth auth;
     Json json;
+    private Object responseAuth;
 
     public AuthServlet() {
         auth = new Auth();
@@ -73,6 +75,7 @@ public class AuthServlet extends HttpServlet {
             response.setContentType("application/json");
             User user = new User();
             Company company = new Company();
+            Cliente cliente = new Cliente();
             JsonObject object = new JsonObject();
             out = response.getWriter();
 
@@ -86,10 +89,21 @@ public class AuthServlet extends HttpServlet {
             isLogin = auth.isLogin(user);
             dtoSession.setMessages(auth.getMessages());
             if (isLogin) {
-                Company responseAuth = auth.getCompany();
-                HttpSession sessionCompany;
-                sessionCompany = request.getSession(true);
-                sessionCompany.setAttribute("company_session", responseAuth);
+
+                if (auth.getCompany() != null) {
+                    Company responseAuth = auth.getCompany();
+                    HttpSession sessionCompany;
+                    sessionCompany = request.getSession(true);
+                    sessionCompany.setAttribute("company_session", responseAuth);
+                }
+
+                if (auth.getCliente() != null) {
+                    Cliente responseAuth = auth.getCliente();
+                    HttpSession sessionCompany;
+                    sessionCompany = request.getSession(true);
+                    sessionCompany.setAttribute("cliente_session", responseAuth);
+                }
+
                 dtoSession.setMessages("Se ingreso correctamente");
                 dtoSession.setStatus(true);
                 dtoSession.setData(list);

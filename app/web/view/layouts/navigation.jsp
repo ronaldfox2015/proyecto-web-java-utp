@@ -1,3 +1,4 @@
+<%@page import="entity.Cliente"%>
 <%@page import="entity.Company"%>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
@@ -32,12 +33,18 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
                         <% Company company = (Company) request.getAttribute("company_session");%>
-                        <%if (company == null) {%>
+                        <% Cliente cliente = (Cliente) request.getAttribute("cliente_session");%>
+
+                        <%if (company != null) {%>
+                        <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-my-account")%>">Mi cuenta</a>
+                        <a class="dropdown-item text-warning" href="/auth/logout">Salir</a>
+                        <% }else if (cliente != null) {%>
+                        <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-my-account")%>">Mi cuenta</a>
+                        <a class="dropdown-item text-warning" href="/auth/logout">Salir</a>
+                        <%} else {%>
+
                         <a data-toggle="modal" data-target="#modalLogin" class="dropdown-item text-warning" href="#modalLogin">Ingresar</a>
                         <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-empresa")%>">Registrate</a>
-                        <%} else {%>
-                        <a class="dropdown-item text-warning" href="<%=request.getAttribute("href-my-account")%>">Mi cuenta</a>
-                                                <a class="dropdown-item text-warning" href="/auth/logout">Salir</a>
 
                         <%}%>
                     </div>

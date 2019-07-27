@@ -133,7 +133,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="btn-guardar-reserva" name="btn-guardar-reserva" type="button" class="btn btn-primary" >guardar</button>
+                        <button id="btn-guardar-reserva" name="btn-guardar-reserva" type="button" class="btn btn-primary" data-idCochera="3" >guardar</button>
                     </div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                 $("#btn-guardar-reserva").on("click", function (event) {
                     console.log("----------------------------")
                     event.preventDefault(); // prevent default submit behaviour
-                    var email = $("input#email").val();
+                    var idCochera = $("button#data-idCochera").val();
                     var password = $("input#password").val();
                     var rol = $("input#rol").val();
                     $.ajax({
@@ -156,14 +156,14 @@
                         dataType: 'json',
                         async: true,
                         data: {
-                            "email": email,
-                            "password": password,
+                            "idCochera": idCochera,
+                            "idVehiculo": 1,
                             "rol": rol
                         },
                         success: function (data, status) {
-                            document.getElementById("response-error").innerHTML = ""
+                            
                             if (data.response.status) {
-                                window.location.href = "/empresa/dashboard"
+                                window.location.href = "/buscar"
                             }
                             document.getElementById("response-error").innerHTML = data.response.messages
                         },

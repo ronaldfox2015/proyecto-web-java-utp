@@ -5,6 +5,7 @@
  */
 package controller;
 
+import entity.Cliente;
 import entity.Company;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,6 +35,7 @@ import model.ListSearchGarage;
 public class SearchServlet extends HttpServlet {
 
     private Company company;
+    private Cliente cliente;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,31 +46,41 @@ public class SearchServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-      
-            response.setContentType("text/html;charset=UTF-8");
-            request.setAttribute("href-empresa", "/empresa/registrar");
-            request.setAttribute("href-my-account", "/empresa/dashboard");
-            HttpSession sessionCompany;
-            sessionCompany = (HttpSession) request.getSession();
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setAttribute("href-empresa", "/empresa/registrar");
+        
+        HttpSession sessionCompany;
+        sessionCompany = (HttpSession) request.getSession();
+
+        if (sessionCompany.getAttribute("company_session") != null) {
             company = (Company) sessionCompany.getAttribute("company_session");
             request.setAttribute("company_session", company);
-            String url = request.getServletPath();
+            request.setAttribute("href-my-account", "/empresa/dashboard");
+        }
 
-            switch (url) {
-                case "/buscar":
-                    this.index(request, response);
-                    break;
-                case "/buscar/filter":
-                    this.filterByDistrito(request, response);
-                    break;
-                case "/buscar/anuncio":
-                    this.filterByAnuncio(request, response);
+        
+        if (sessionCompany.getAttribute("cliente_session") != null) {
+            cliente = (Cliente) sessionCompany.getAttribute("cliente_session");
+            request.setAttribute("cliente_session", cliente);
+            request.setAttribute("href-my-account", "/cliente/dashboard");
+        }
 
-                    break;
-            }
-       
+        String url = request.getServletPath();
+
+        switch (url) {
+            case "/buscar":
+                this.index(request, response);
+                break;
+            case "/buscar/filter":
+                this.filterByDistrito(request, response);
+                break;
+            case "/buscar/anuncio":
+                this.filterByAnuncio(request, response);
+
+                break;
+        }
+
     }
 
     /**
@@ -96,7 +108,7 @@ public class SearchServlet extends HttpServlet {
 
         try {
             String idDistrito = request.getParameter("distrito");
-            request.setAttribute("idDistrito",idDistrito);
+            request.setAttribute("idDistrito", idDistrito);
 
             ListSearchGarage listSearchGarage = new ListSearchGarage();
             request.setAttribute("listGarage", listSearchGarage.getByDistrito(Integer.parseInt(idDistrito)));
@@ -110,7 +122,8 @@ public class SearchServlet extends HttpServlet {
             Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        protected void filterByAnuncio(HttpServletRequest request, HttpServletResponse response) {
+
+    protected void filterByAnuncio(HttpServletRequest request, HttpServletResponse response) {
 
         try {
             String titulo = request.getParameter("titulo");

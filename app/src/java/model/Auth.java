@@ -6,6 +6,7 @@
 package model;
 
 import com.mysql.jdbc.JDBC4ResultSet;
+import entity.Cliente;
 import entity.Company;
 import entity.User;
 import java.sql.ResultSet;
@@ -25,11 +26,15 @@ public class Auth {
 
     private String messages;
     ListCompany listCompany;
+    ListClient listClient;
     Company company;
+    Cliente cliente;
 
     public Auth() {
         listCompany = new ListCompany();
+        listClient = new ListClient();
         company = new Company();
+        cliente = new Cliente();
     }
 
     public boolean isLogin(User user) {
@@ -42,7 +47,16 @@ public class Auth {
                     isLogin = true;
                     return isLogin;
                 }
-                throw new SQLException("No se encontro al usuario de tipo "+user.getRole());
+                throw new SQLException("No se encontro al usuario de tipo " + user.getRole());
+            }
+
+            if (user.getRole().equals("cliente-user")) {
+                cliente = listClient.getUserClient(user);
+                if (cliente.getId() > 0) {
+                    isLogin = true;
+                    return isLogin;
+                }
+                throw new SQLException("No se encontro al usuario de tipo " + user.getRole());
             }
         } catch (SQLException ex) {
             this.messages = ex.getMessage();
@@ -54,6 +68,10 @@ public class Auth {
 
     public Company getCompany() {
         return this.company;
+    }
+
+    public Cliente getCliente() {
+        return this.cliente;
     }
 
     public String getMessages() {

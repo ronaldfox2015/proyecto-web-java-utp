@@ -45,8 +45,8 @@ public class ClientServlet extends HttpServlet {
         request.setAttribute("href-empresa", "/cliente/registrar");
         HttpSession sessionCliente;
         sessionCliente = (HttpSession) request.getSession();
-        Cliente cliente = (Cliente) sessionCliente.getAttribute("company_session");
-        request.setAttribute("company_session", cliente);
+        Cliente cliente = (Cliente) sessionCliente.getAttribute("cliente_session");
+        request.setAttribute("cliente_session", cliente);
          switch (url) {
             case "/cliente":
                 this.registrationForm(request, response);
@@ -78,7 +78,7 @@ public class ClientServlet extends HttpServlet {
             
             HttpSession sessionCliente;
             sessionCliente = request.getSession(true);
-            sessionCliente.setAttribute("company_session", cliente);
+            sessionCliente.setAttribute("cliente_session", cliente);
 
             request.getRequestDispatcher("/cliente/dashboard").forward(request, response);
 
