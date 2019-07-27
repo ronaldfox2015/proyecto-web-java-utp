@@ -2,8 +2,7 @@
 SQLyog Ultimate v9.02 
 MySQL - 5.5.62 : Database - dbhparking
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -16,24 +15,6 @@ MySQL - 5.5.62 : Database - dbhparking
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`dbhparking` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `dbhparking`;
-
-/*Table structure for table `tbusuario` */
-
-DROP TABLE IF EXISTS `tbusuario`;
-
-CREATE TABLE `tbusuario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `correo` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `password` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `rol` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `nombre` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `apellido` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `fechaCreacion` datetime DEFAULT NULL,
-  `fechaActualizacion` datetime DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
-
 
 /*Table structure for table `tb_cochera_tarifa` */
 
@@ -68,7 +49,7 @@ CREATE TABLE `tbcliente` (
   PRIMARY KEY (`id`),
   KEY `FK_tbcliente_tbcliente` (`idUsuario`),
   CONSTRAINT `FK_tbcliente_tbcliente` FOREIGN KEY (`idUsuario`) REFERENCES `tbusuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 /*Data for the table `tbcliente` */
 
@@ -160,6 +141,22 @@ CREATE TABLE `tbubicacion` (
 
 insert  into `tbubicacion`(`id`,`name`,`padre`,`coordenada`,`estado`) values (3928,'Cercado de Lima','3927','',1),(3929,'Ancon','3927','',1),(3930,'Ate','3927','',1),(3931,'Barranco','3927','',1),(3932,'BreÃ±a','3927','',1),(3933,'Carabayllo','3927','',1),(3934,'Chaclacayo','3927','',1),(3935,'Chorrillos','3927','',1),(3936,'Cieneguilla','3927','',1),(3937,'Comas','3927','',1),(3938,'El Agustino','3927','',1),(3939,'Independencia','3927','',1),(3940,'Jesus Maria','3927','',1),(3941,'La Molina','3927','',1),(3942,'La Victoria','3927','',1),(3943,'Lince','3927','',1),(3944,'Los Olivos','3927','',1),(3945,'Lurigancho','3927','',1),(3946,'Lurin','3927','',1),(3947,'Magdalena del Mar','3927','',1),(3948,'Pueblo Libre','3927','',1),(3949,'Miraflores','3927','',1),(3950,'Pachacamac','3927','',1),(3951,'Pucusana','3927','',1),(3952,'Puente Piedra','3927','',1),(3953,'Punta Hermosa','3927','',1),(3954,'Punta Negra','3927','',1),(3955,'Rimac','3927','',1),(3956,'San Bartolo','3927','',1),(3957,'San Borja','3927','',1),(3958,'San Isidro','3927','',1),(3959,'San Juan de Lurigancho','3927','',1),(3960,'San Juan de Miraflores','3927','',1),(3961,'San Luis','3927','',1),(3962,'San Martin de Porres','3927','',1),(3963,'San Miguel','3927','',1),(3964,'Santa Anita','3927','',1),(3965,'Santa Maria del Mar','3927','',1),(3966,'Santa Rosa','3927','',1),(3967,'Santiago de Surco','3927','',1),(3968,'Surquillo','3927','',1),(3969,'Villa El Salvador','3927','',1),(3970,'Villa Maria del Triunfo','3927','',1);
 
+/*Table structure for table `tbusuario` */
+
+DROP TABLE IF EXISTS `tbusuario`;
+
+CREATE TABLE `tbusuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `correo` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `password` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `rol` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `nombre` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `apellido` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `fechaCreacion` datetime DEFAULT NULL,
+  `fechaActualizacion` datetime DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 /*Data for the table `tbusuario` */
 
