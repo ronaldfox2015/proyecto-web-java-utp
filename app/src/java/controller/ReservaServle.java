@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import library.DtoResponse;
 import library.Json;
 import model.ListSearchGarage;
+import model.ModelCreateReserva;
 import model.ModelCreateVehiculo;
 
 /**
@@ -96,6 +97,12 @@ public class ReservaServle extends HttpServlet {
             ModelCreateVehiculo createVehiculo  = new ModelCreateVehiculo();
             createVehiculo.save(vehiculo);
             
+            ModelCreateReserva re;
+            re = new ModelCreateReserva();
+            reserva.setVehiculo(vehiculo);
+            reserva.setIdCochera(Integer.parseInt(idCochera));
+            
+            re.save(reserva);
             dtoSession.setData(null);
             dtoSession.setMessages("todo ok ");
             dtoSession.setStatus(true);
