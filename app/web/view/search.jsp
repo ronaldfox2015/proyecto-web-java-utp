@@ -99,7 +99,8 @@
                                 <div class="tab-content" id="myTabContent">
                                     <div class="list-group">
                                         <%  for (int i = 0; i < listGarage.size(); i++) {%>
-                                        <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#reserva">
+                                        <a href="#" class="list-group-item list-group-item-action seleccionar" data-idcochera="<%= listGarage.get(i).getId()%>" data-toggle="modal" data-target="#reserva"
+                                           onclick="selector(<%= listGarage.get(i).getId()%>)">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h5 class="mb-1"><%= listGarage.get(i).getName()%></h5>
                                                 <small>hace <%= listGarage.get(i).getDay()%> dias</small>
@@ -130,10 +131,39 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="col-md-6 mb-2">
+                                <label for="validationCustom01">Placa</label>
+                                <input type="text" class="form-control" id="placa" name="placa" placeholder="placa" value="" required>
+                                <div class="invalid-feedback">
+                                    Por favor proporcione un placa válido.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="validationCustom02">modelo</label>
+                                <input type="text" class="form-control" id="modelo" name="modelo" placeholder="modelo" value="" required>
+                                <div class="invalid-feedback">
+                                    Por favor proporcione un modelo válido.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
 
-                    <div class="modal-footer">
+                            <div class="col-md-6 mb-2">
+                                <label for="validationCustom02">Descripcion</label>
+                                <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion" value="" required>
+                                <div class="invalid-feedback">
+                                    Por favor proporcione un Descripcion válido.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="etiqueta" class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button id="btn-guardar-reserva" name="btn-guardar-reserva" type="button" class="btn btn-primary" data-idCochera="3" >guardar</button>
+                        <input type="hidden" id="idCochera" name="idCochera" value="0">
+
                     </div>
                 </div>
             </div>
@@ -143,13 +173,19 @@
         <!-- Bootstrap core JavaScript -->
         <%@include file="layouts/js.jsp" %>
         <script>
+            function selector(idcochera) {
+                document.getElementById("idCochera").setAttribute("value", idcochera);
+            }
+
             $(function () {
                 $("#btn-guardar-reserva").on("click", function (event) {
-                    console.log("----------------------------")
+
                     event.preventDefault(); // prevent default submit behaviour
-                    var idCochera = $("button#data-idCochera").val();
-                    var password = $("input#password").val();
-                    var rol = $("input#rol").val();
+                    var idCochera = $("input#idCochera").val();
+                    var placa = $("input#placa").val();
+                    var modelo = $("input#modelo").val();
+                    var descripcion = $("input#descripcion").val();
+
                     $.ajax({
                         url: '/reserva',
                         type: 'POST',
@@ -157,11 +193,12 @@
                         async: true,
                         data: {
                             "idCochera": idCochera,
-                            "idVehiculo": 1,
-                            "rol": rol
+                            "placa": placa,
+                            "modelo": modelo,
+                            "descripcion": descripcion
                         },
                         success: function (data, status) {
-                            
+
                             if (data.response.status) {
                                 window.location.href = "/buscar"
                             }

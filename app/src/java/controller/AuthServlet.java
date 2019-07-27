@@ -131,7 +131,7 @@ public class AuthServlet extends HttpServlet {
                 /*  RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/empresa");
 
                  dispatcher.forward(request, response);*/
-                response.sendRedirect("/empresa");
+                RequestDispatcher disp = request.getRequestDispatcher("/view/home.jsp");
 
             }
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/home");

@@ -6,6 +6,9 @@
 package controller;
 
 import com.google.gson.JsonObject;
+import entity.Cliente;
+import entity.Reserva;
+import entity.Vehiculo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -18,9 +21,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import library.DtoResponse;
 import library.Json;
 import model.ListSearchGarage;
+import model.ModelCreateVehiculo;
 
 /**
  *
@@ -69,6 +74,28 @@ public class ReservaServle extends HttpServlet {
             DtoResponse dtoSession = new DtoResponse();
             JsonObject object = new JsonObject();
             out = response.getWriter();
+
+            HttpSession sessionCliente;
+            sessionCliente = (HttpSession) request.getSession();
+            Cliente cliente = (Cliente) sessionCliente.getAttribute("cliente_session");
+
+            String idCochera = request.getParameter("idCochera");
+            String placa = request.getParameter("placa");
+            String modelo = request.getParameter("modelo");
+            String descripcion = request.getParameter("descripcion");
+
+            Vehiculo vehiculo = new Vehiculo();
+            vehiculo.setCliente(cliente);
+            vehiculo.setModelo(modelo);
+            vehiculo.setPlaca(placa);
+            vehiculo.setDescripcion(descripcion);
+
+            Reserva reserva = new Reserva();
+            reserva.setIdCochera(Integer.parseInt(idCochera));
+            reserva.setVehiculo(vehiculo);
+            ModelCreateVehiculo createVehiculo  = new ModelCreateVehiculo();
+            createVehiculo.save(vehiculo);
+            
             dtoSession.setData(null);
             dtoSession.setMessages("todo ok ");
             dtoSession.setStatus(true);
