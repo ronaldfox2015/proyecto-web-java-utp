@@ -9,22 +9,73 @@
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item active" style="background-image: url('${request.getContextPath()}/../static/img/home/1.jpg')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>Miguel Lerzundi</h3>
-                    <p>This is a description for the first slide.</p>
+                    <form action="/buscar/anuncio" method="GET">
+                        <section class="newsletter">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="content">
+
+                                            <div class="input-group">
+                                                <input name="titulo" type="text" class="form-control" placeholder="Buscar">
+                                                <span class="input-group-btn">
+                                                    <button  class="btn" type="submit">Buscar</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section> 
+                    </form>
+
                 </div>
             </div>
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item" style="background-image: url('${request.getContextPath()}static/img/home/2.jpg')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>Virginia Asto</h3>
-                    <p>This is a description for the second slide.</p>
+                    <form action="/buscar/anuncio" method="GET">
+                        <section class="newsletter">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="content">
+
+                                            <div class="input-group">
+                                                <input name="titulo" type="text" class="form-control" placeholder="Buscar">
+                                                <span class="input-group-btn">
+                                                    <button name="Buscar" class="btn" type="submit">Buscar</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>                                                
+                    </form>
                 </div>
             </div>
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item" style="background-image: url('${request.getContextPath()}static/img/home/3.jpg')">
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>Third Slide</h3>
-                    <p>This is a description for the third slide.</p>
+                    <form action="/buscar/anuncio" method="GET">
+                        <section class="newsletter">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="content">
+                                            <div class="input-group">
+                                                <input name="titulo" type="text" class="form-control" placeholder="Buscar">
+                                                <span class="input-group-btn btn-warning">
+                                                    <button name="Buscar" class="btn" type="submit">Buscar</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>                  
                 </div>
             </div>
         </div>

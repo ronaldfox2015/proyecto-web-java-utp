@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,10 @@ import model.ListSearchGarage;
  *
  * @author ronald
  */
-@WebServlet(name = "SearchServlet", urlPatterns = {"/buscar"})
+@WebServlet(
+        name = "SearchServlet",
+        urlPatterns = {"/buscar", "/buscar/filter", "/buscar/anuncio"}
+)
 public class SearchServlet extends HttpServlet {
 
     private Company company;
@@ -42,7 +46,7 @@ public class SearchServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+      
             response.setContentType("text/html;charset=UTF-8");
             request.setAttribute("href-empresa", "/empresa/registrar");
             request.setAttribute("href-my-account", "/empresa/dashboard");
@@ -51,16 +55,20 @@ public class SearchServlet extends HttpServlet {
             company = (Company) sessionCompany.getAttribute("company_session");
             request.setAttribute("company_session", company);
             String url = request.getServletPath();
+
             switch (url) {
                 case "/buscar":
                     this.index(request, response);
                     break;
+                case "/buscar/filter":
+                    this.filterByDistrito(request, response);
+                    break;
+                case "/buscar/anuncio":
+                    this.filterByAnuncio(request, response);
+
+                    break;
             }
-            RequestDispatcher disp = request.getRequestDispatcher("/view/publish.jsp");
-            disp.forward(request, response);
-        } catch (ServletException | IOException ex) {
-            Logger.getLogger(PublishServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 
     /**
@@ -73,6 +81,42 @@ public class SearchServlet extends HttpServlet {
         try {
             ListSearchGarage listSearchGarage = new ListSearchGarage();
             request.setAttribute("listGarage", listSearchGarage.get());
+            listarDistritos(request, response);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/view/search.jsp");
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(PublishServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    protected void filterByDistrito(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            String idDistrito = request.getParameter("distrito");
+            request.setAttribute("idDistrito",idDistrito);
+
+            ListSearchGarage listSearchGarage = new ListSearchGarage();
+            request.setAttribute("listGarage", listSearchGarage.getByDistrito(Integer.parseInt(idDistrito)));
+            listarDistritos(request, response);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/view/search.jsp");
+            dispatcher.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(PublishServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        protected void filterByAnuncio(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            String titulo = request.getParameter("titulo");
+
+            ListSearchGarage listSearchGarage = new ListSearchGarage();
+            request.setAttribute("listGarage", listSearchGarage.getByTexto(titulo));
             listarDistritos(request, response);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/search.jsp");

@@ -28,10 +28,10 @@ public class ModelCreateCliente {
                 + "`dni`,"
                 + "`celular`,"
                 + "`estado`) VALUES (NULL,"
-                + cliente.getUser().getId()
-                + "'" + cliente.getDni() + "'"
-                + "'" + cliente.getCelular() + "'"
-                + "'" + cliente.getStatus() + "'"
+                + cliente.getUser().getId()+ ","
+                + "'" + cliente.getDni() + "',"
+                + "'" + cliente.getCelular() + "',"
+                + "" + cliente.getStatus() + ""
                 + ");";
         this.mysql.insert(sql);
         id=this.mysql.getId();

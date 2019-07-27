@@ -26,11 +26,20 @@ public class Garage {
     private String address;
     private int numberOfVehicles;
     private int status;
+    private int day;
 
     public Garage() {
         DateTime date = new DateTime();
         this.updateDate = date.format("yyyy-MM-dd HH:mm:ss");
         this.status = User.STATUS_ACTIVATE;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
     }
 
     public ParkingGarage getParkingGarage() {

@@ -2,7 +2,8 @@
 SQLyog Ultimate v9.02 
 MySQL - 5.5.62 : Database - dbhparking
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -15,6 +16,24 @@ MySQL - 5.5.62 : Database - dbhparking
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`dbhparking` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 USE `dbhparking`;
+
+/*Table structure for table `tbusuario` */
+
+DROP TABLE IF EXISTS `tbusuario`;
+
+CREATE TABLE `tbusuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `correo` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `password` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `rol` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `nombre` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `apellido` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
+  `fechaCreacion` datetime DEFAULT NULL,
+  `fechaActualizacion` datetime DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
 
 /*Table structure for table `tb_cochera_tarifa` */
 
@@ -30,9 +49,11 @@ CREATE TABLE `tb_cochera_tarifa` (
   PRIMARY KEY (`id`),
   KEY `FK_tb_cochera_tarifa` (`idCochera`),
   CONSTRAINT `FK_tb_cochera_tarifa` FOREIGN KEY (`idCochera`) REFERENCES `tbcochera` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 /*Data for the table `tb_cochera_tarifa` */
+
+insert  into `tb_cochera_tarifa`(`id`,`idCochera`,`nombre`,`precio`,`descuento`,`estado`) values (1,8,'Alquieler de cochera',0,22,1),(2,9,'Alquieler de cochera',20,2,1),(3,10,'Alquieler de cochera',43,1,1);
 
 /*Table structure for table `tbcliente` */
 
@@ -46,8 +67,8 @@ CREATE TABLE `tbcliente` (
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_tbcliente_tbcliente` (`idUsuario`),
-  CONSTRAINT `FK_tbcliente_tbcliente` FOREIGN KEY (`idUsuario`) REFERENCES `tbcliente` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  CONSTRAINT `FK_tbcliente_tbcliente` FOREIGN KEY (`idUsuario`) REFERENCES `tbusuario` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 /*Data for the table `tbcliente` */
 
@@ -71,11 +92,11 @@ CREATE TABLE `tbcochera` (
   KEY `FK_tbcochera_tbubicacion` (`idUbicacion`),
   CONSTRAINT `FK_tbcochera_tbempresa` FOREIGN KEY (`idEmpresa`) REFERENCES `tbempresa` (`id`),
   CONSTRAINT `FK_tbcochera_tbubicacion` FOREIGN KEY (`idUbicacion`) REFERENCES `tbubicacion` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 /*Data for the table `tbcochera` */
 
-insert  into `tbcochera`(`id`,`idEmpresa`,`idUbicacion`,`nombre`,`fechaCreacion`,`fechaActualizacion`,`direccion`,`numVehiculos`,`banner`,`estado`) values (3,1,3940,'feat(buscador-avisos): Crear nuevo filtro departam','2019-07-21 21:13:56','2019-07-21 21:13:56','ddsda',2,NULL,1),(4,1,3940,'feat(buscador-avisos): Crear nuevo filtro departam','2019-07-21 21:13:56','2019-07-21 21:13:56','ddsda',2,NULL,1),(5,1,3940,'feat(buscador-avisos): Crear nuevo filtro departam','2019-07-21 21:13:56','2019-07-21 21:13:56','ddsda',2,NULL,1),(6,1,3940,'feat(buscador-avisos):','2019-07-21 21:13:56','2019-07-21 21:13:56','ddsda',2,NULL,1);
+insert  into `tbcochera`(`id`,`idEmpresa`,`idUbicacion`,`nombre`,`fechaCreacion`,`fechaActualizacion`,`direccion`,`numVehiculos`,`banner`,`estado`) values (3,1,3940,'feat(buscador-avisos): Crear nuevo filtro departam','2019-07-21 21:13:56','2019-07-21 21:13:56','ddsda',2,NULL,1),(4,1,3940,'feat(buscador-avisos): Crear nuevo filtro departam','2019-07-21 21:13:56','2019-07-21 21:13:56','ddsda',2,NULL,1),(5,1,3940,'feat(buscador-avisos): Crear nuevo filtro departam','2019-07-21 21:13:56','2019-07-21 21:13:56','ddsda',2,NULL,1),(6,1,3940,'feat(buscador-avisos):','2019-07-21 21:13:56','2019-07-21 21:13:56','ddsda',2,NULL,1),(7,1,3942,'feat(buscador-avisos): Crear nuevo filtro departamento y extranjero','2019-07-21 21:19:15','2019-07-21 21:19:15','ddsda',2,NULL,1),(8,1,3928,'Alquiler de cochera pepito','2019-07-21 21:26:36','2019-07-21 21:26:36','altura del estadio nacional',50,NULL,1),(9,1,3942,'feat(buscador-avisos): Crear nuevo filtro departamento y extranjero','2019-07-21 21:41:24','2019-07-21 21:41:24','altura del estadio nacional',23,NULL,1),(10,1,3943,'Alquiler de cochera pepito','2019-07-21 21:43:12','2019-07-21 21:43:12','altura del estadio nacional',33,NULL,1);
 
 /*Table structure for table `tbempresa` */
 
@@ -139,26 +160,10 @@ CREATE TABLE `tbubicacion` (
 
 insert  into `tbubicacion`(`id`,`name`,`padre`,`coordenada`,`estado`) values (3928,'Cercado de Lima','3927','',1),(3929,'Ancon','3927','',1),(3930,'Ate','3927','',1),(3931,'Barranco','3927','',1),(3932,'BreÃ±a','3927','',1),(3933,'Carabayllo','3927','',1),(3934,'Chaclacayo','3927','',1),(3935,'Chorrillos','3927','',1),(3936,'Cieneguilla','3927','',1),(3937,'Comas','3927','',1),(3938,'El Agustino','3927','',1),(3939,'Independencia','3927','',1),(3940,'Jesus Maria','3927','',1),(3941,'La Molina','3927','',1),(3942,'La Victoria','3927','',1),(3943,'Lince','3927','',1),(3944,'Los Olivos','3927','',1),(3945,'Lurigancho','3927','',1),(3946,'Lurin','3927','',1),(3947,'Magdalena del Mar','3927','',1),(3948,'Pueblo Libre','3927','',1),(3949,'Miraflores','3927','',1),(3950,'Pachacamac','3927','',1),(3951,'Pucusana','3927','',1),(3952,'Puente Piedra','3927','',1),(3953,'Punta Hermosa','3927','',1),(3954,'Punta Negra','3927','',1),(3955,'Rimac','3927','',1),(3956,'San Bartolo','3927','',1),(3957,'San Borja','3927','',1),(3958,'San Isidro','3927','',1),(3959,'San Juan de Lurigancho','3927','',1),(3960,'San Juan de Miraflores','3927','',1),(3961,'San Luis','3927','',1),(3962,'San Martin de Porres','3927','',1),(3963,'San Miguel','3927','',1),(3964,'Santa Anita','3927','',1),(3965,'Santa Maria del Mar','3927','',1),(3966,'Santa Rosa','3927','',1),(3967,'Santiago de Surco','3927','',1),(3968,'Surquillo','3927','',1),(3969,'Villa El Salvador','3927','',1),(3970,'Villa Maria del Triunfo','3927','',1);
 
-/*Table structure for table `tbusuario` */
-
-DROP TABLE IF EXISTS `tbusuario`;
-
-CREATE TABLE `tbusuario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `correo` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `password` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `rol` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `nombre` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `apellido` varchar(50) COLLATE latin1_spanish_ci DEFAULT NULL,
-  `fechaCreacion` datetime DEFAULT NULL,
-  `fechaActualizacion` datetime DEFAULT NULL,
-  `estado` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 /*Data for the table `tbusuario` */
 
-insert  into `tbusuario`(`id`,`correo`,`password`,`rol`,`nombre`,`apellido`,`fechaCreacion`,`fechaActualizacion`,`estado`) values (23,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(24,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(25,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(26,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(27,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(28,'ronaldfox2015@gmail.com','12345678','empresa-user','Ronald','cutisaca','2019-06-30 00:00:00','2019-06-30 00:00:00',1),(29,'Ronald@gmail.com','ramirez2015','admin-empresa','Ronald','cutisaca','2019-07-21 18:23:39','2019-07-21 18:23:39',1);
+insert  into `tbusuario`(`id`,`correo`,`password`,`rol`,`nombre`,`apellido`,`fechaCreacion`,`fechaActualizacion`,`estado`) values (29,'Ronald@gmail.com','ramirez2015','admin-empresa','Ronald','cutisaca','2019-07-21 18:23:39','2019-07-21 18:23:39',1),(32,'ronald.cutisaca@orbis.com.pe','12345678','cliente-user','Ronald','cutisaca','2019-07-26 02:23:50','2019-07-26 02:23:50',1),(33,'ronald.cutisaca2@orbis.com.pe','12345678','cliente-user','Ronald','cutisaca','2019-07-26 02:24:35','2019-07-26 02:24:35',1),(34,'ronald.cutisaca22@orbis.com.pe','12345678','cliente-user','Ronald','cutisaca','2019-07-26 02:25:13','2019-07-26 02:25:13',1),(35,'ronald.cutisaca2w2@orbis.com.pe','12345678','cliente-user','Ronald','cutisaca','2019-07-26 02:25:47','2019-07-26 02:25:47',1);
 
 /*Table structure for table `tbvehiculo` */
 

@@ -16,7 +16,20 @@ public class Location {
     private int padre;
     private String coordinate;
     private int state;
-
+    
+    /**
+     *
+     * @param etiqueta
+     * @return
+     */
+    public String etiqueta(String etiqueta) {
+        if(etiqueta != null  && this.id == Integer.parseInt(etiqueta)){
+            return "active";
+        }
+        return "";
+    }
+    
+    
     public int getId() {
         return id;
     }
